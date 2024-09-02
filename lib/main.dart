@@ -153,6 +153,7 @@ class MyHttpOverrides extends HttpOverrides{
   }
 }
 late FirebaseMessaging messaging;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -200,6 +201,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late final FirebaseMessaging _messaging;
   PushNotification? _notificationInfo;
+
 
   registerNotification() async {
     await Firebase.initializeApp();

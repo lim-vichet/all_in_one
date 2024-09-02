@@ -8,6 +8,7 @@ import '../../../../utils/constants/app_colors.dart';
 import '../../../../utils/constants/app_dialog.dart';
 import '../../../../utils/constants/app_font_styles.dart';
 import '../../../../utils/global_use.dart';
+import '../../accesstoken/accesstoken.dart';
 import '../../home_screen/home_screen.dart';
 import '../../main_screen/main_screen.dart';
 import 'otp_screen.dart';
@@ -163,7 +164,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onTap: () {
                                   // Navigator.pushNamed(context, OTPScreen.routeName);
                                   // Navigator.pushNamed(context, TestOTPCutSpace.routeName);
-                                  context.read<LoginBloc>().add(EventLogin(phone: phoneController.text, language: 'EN'));
+                                  Navigator.pushNamed(context, MainScreen.routeName);
+                                  // Navigator.pushNamed(context, MyHomePage.routeName);
+                                  // context.read<LoginBloc>().add(EventLogin(phone: phoneController.text, language: 'EN'));
                                 },
                                 child: Expanded(
                                     flex: 1,

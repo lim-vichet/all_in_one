@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:googleapis_auth/auth.dart';
+import 'package:googleapis_auth/auth_io.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../logic/cubit/bottom_nav/bottom_nav_cubit.dart';
@@ -17,6 +21,7 @@ import '../account_screen/account_screen.dart';
 import '../cart_screen/cart_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../order_screen/order_screen.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -33,9 +38,18 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> keyContext = GlobalKey();
 
+  String accessToken = '';
+  getToken() async {
+    var mytoken = await FirebaseMessaging.instance.getToken();
+    print("My Device Token: ${mytoken}");
+  }
+
   @override
   void initState() {
+    getToken();
     super.initState();
+    getAccessToken();
+
     // close app but not clear Push Notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       PushNotification notification = PushNotification(
@@ -100,7 +114,27 @@ class _MainScreenState extends State<MainScreen> {
     //   countNotifications = widget.countUnseen!;
     // }
   }
+  Future<void> getAccessToken() async {
+    try {
+      final serviceAccountJson = await rootBundle.loadString(
+          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-eb4e0dd74a.json');
 
+      final accountCredentials = ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson),);
+      const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
+      final client = http.Client();
+      try {
+        final accessCredentials = await obtainAccessCredentialsViaServiceAccount(accountCredentials, scopes, client,);
+        setState(() {accessToken = accessCredentials.accessToken.data;});
+        print('Access Token: $accessToken');
+      } catch (e) {
+        print('Error obtaining access token: $e');
+      } finally {
+        client.close();
+      }
+    } catch (e) {
+      print('Error loading service account JSON: $e');
+    }
+  }
 
   addToGroup(context) {
     return showDialog(
