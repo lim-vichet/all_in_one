@@ -1,0 +1,9 @@
+{
+    "host": "http://103.101.80.108:8082",
+    "base_url": "http://103.101.80.108:8082",
+    "root_api": "http://103.101.80.108:8082/api/",
+    "production_url_aba": "https://checkout-sandbox.payway.com.kh/api/payment-gateway/v1/payments/purchase",
+    "create_transaction_url_aba": "https://www.staging.nsn-birdnest.com/api/v1/user/order/create-transaction",
+    "check_transaction_url_aba": "https://www.staging.nsn-birdnest.com/api/v1/user/order/check-transaction"
+}
+

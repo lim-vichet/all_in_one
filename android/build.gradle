@@ -1,4 +1,22 @@
+//add New
+buildscript {
+    ext.kotlin_version = '2.0.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.gms:google-services:4.4.2"
+
+    }
+}
+//add New
+
 allprojects {
+    ext.kotlin_version = '2.0.20'
     repositories {
         google()
         mavenCentral()

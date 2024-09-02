@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "634090600777",
+    "project_id": "all-in-one-eee8d",
+    "storage_bucket": "all-in-one-eee8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634090600777:android:75cb2ce5019896635b8298",
+        "android_client_info": {
+          "package_name": "com.example.all_in_one"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNNA0yrikxnrAF4fyqHMZHMMP_M822Ki0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
