@@ -117,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> getAccessToken() async {
     try {
       final serviceAccountJson = await rootBundle.loadString(
-          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-eb4e0dd74a.json');
+          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-a49442e44b.json');
 
       final accountCredentials = ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson),);
       const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
@@ -234,8 +234,8 @@ class _MainScreenState extends State<MainScreen> {
   int _start = 10;
 
   void startTimer() {
-    const oneSec = const Duration(seconds: 10);
-    _timer = new Timer.periodic(
+    const oneSec = Duration(seconds: 10);
+    _timer = Timer.periodic(
       oneSec,
           (Timer timer) {
         if (_start == 0) {

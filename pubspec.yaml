@@ -68,6 +68,8 @@ dependencies:
   overlay_support: ^2.1.0
   googleapis_auth: ^1.6.0
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -96,7 +98,7 @@ flutter:
     - lib/configs/
     - assets/icons/
     - assets/images/
-    - assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-eb4e0dd74a.json
+    - assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-a49442e44b.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
