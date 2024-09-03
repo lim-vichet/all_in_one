@@ -25,8 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     getToken();
     super.initState();
     getAccessToken();
-    // Hello
-    // Hello
+
   }
   Future<void> getAccessToken() async {
     try {
