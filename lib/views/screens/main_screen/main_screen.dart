@@ -117,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> getAccessToken() async {
     try {
       final serviceAccountJson = await rootBundle.loadString(
-          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-a49442e44b.json');
+          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-14fa4ed3d3.json');
 
       final accountCredentials = ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson),);
       const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
