@@ -22,6 +22,7 @@ import '../cart_screen/cart_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../order_screen/order_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:googleapis_auth/auth_io.dart' as auth;
 
 
 
@@ -39,16 +40,17 @@ class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> keyContext = GlobalKey();
 
   String accessToken = '';
+
+  /// Get Token Device
   getToken() async {
     var mytoken = await FirebaseMessaging.instance.getToken();
     print("My Device Token: ${mytoken}");
   }
-
+  /// Get Token Device
   @override
   void initState() {
     getToken();
     super.initState();
-    getAccessToken();
 
     // close app but not clear Push Notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -113,27 +115,6 @@ class _MainScreenState extends State<MainScreen> {
     // if (widget.countUnseen != null) {
     //   countNotifications = widget.countUnseen!;
     // }
-  }
-  Future<void> getAccessToken() async {
-    try {
-      final serviceAccountJson = await rootBundle.loadString(
-          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-14fa4ed3d3.json');
-
-      final accountCredentials = ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson),);
-      const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
-      final client = http.Client();
-      try {
-        final accessCredentials = await obtainAccessCredentialsViaServiceAccount(accountCredentials, scopes, client,);
-        setState(() {accessToken = accessCredentials.accessToken.data;});
-        print('Access Token: $accessToken');
-      } catch (e) {
-        print('Error obtaining access token: $e');
-      } finally {
-        client.close();
-      }
-    } catch (e) {
-      print('Error loading service account JSON: $e');
-    }
   }
 
   addToGroup(context) {
@@ -263,7 +244,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Listener(
-
       onPointerDown: (PointerDownEvent event) {
         log("message-----PointerDownEvent: $event");
         _start = 10;
@@ -275,6 +255,15 @@ class _MainScreenState extends State<MainScreen> {
           builder: (context, state) {
             return Scaffold(
               key: keyContext,
+              /// Test Notification
+              floatingActionButton: FloatingActionButton(onPressed: (){
+                sendPushMessage(
+                  recipientToken: "cuhwvmdHSbaol_xh1Wdh0P:APA91bHqlGth75larXgxMdRoAOySYFr_usmuUXN8S2geoh_Rb33WrLMs618UgD6k-o3H80gguLC9tO0X944ntvKCMRR33ESr4Bsjc4euadGzWTvTgXisufGlvVhEEAdsk4JAdL9Wm2Ox",
+                  body: "Hello Body",
+                  title: "Hello Title",
+                );
+              }, child: Icon(Icons.send),),
+              /// Test Notification
               body: InternetConnectWidget(
                 child: LazyLoadIndexedStack(
                   index: BlocProvider.of<BottomNavCubit>(context).currentIndex,
@@ -349,4 +338,44 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+/// Test Notification
+  Future<bool> sendPushMessage({required String recipientToken, required String title, required String body,}) async {
+    final jsonCredentials = await rootBundle.loadString('assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-b88a0ca67c.json');
+    final creds = auth.ServiceAccountCredentials.fromJson(jsonCredentials);
+
+    final client = await auth.clientViaServiceAccount(
+      creds,
+      ['https://www.googleapis.com/auth/cloud-platform'],
+    );
+
+    final notificationData = {
+      'message': {
+        'token': recipientToken,
+        'notification': {'title': title, 'body': body}
+      },
+      "dada":{
+        "id":2,
+        "name":"Vichet",
+        "type":"Staff"
+      }
+    };
+
+    const String senderId = '634090600777';
+    final response = await client.post(
+      Uri.parse('https://fcm.googleapis.com/v1/projects/$senderId/messages:send'),
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: jsonEncode(notificationData),
+    );
+
+    client.close();
+    if (response.statusCode == 200) {
+      return true; // Success!
+    }
+
+    return false;
+  }
+/// Test Notification
 }
