@@ -63,13 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 760,
+                    height: 835,
                     color: Colors.blue,
                     child: const Image(
                       image: AssetImage(
                         "assets/images/bg_login.jpg",
                       ),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   Positioned(

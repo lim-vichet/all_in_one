@@ -12,6 +12,7 @@ import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../logic/cubit/bottom_nav/bottom_nav_cubit.dart';
 import '../../../main.dart';
+
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/global_use.dart';
 import '../../../utils/shared_preferences_service.dart';
@@ -215,7 +216,7 @@ class _MainScreenState extends State<MainScreen> {
   int _start = 10;
 
   void startTimer() {
-    const oneSec = Duration(seconds: 10);
+    const oneSec = Duration(minutes: 30);
     _timer = Timer.periodic(
       oneSec,
           (Timer timer) {
@@ -262,7 +263,7 @@ class _MainScreenState extends State<MainScreen> {
                   body: "Hello Body",
                   title: "Hello Title",
                 );
-              }, child: Icon(Icons.send),),
+              }, child: Icon(Icons.my_location),),
               /// Test Notification
               body: InternetConnectWidget(
                 child: LazyLoadIndexedStack(

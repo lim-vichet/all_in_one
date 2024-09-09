@@ -2,14 +2,16 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../utils/constants/app_colors.dart';
+// import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_font_styles.dart';
 import '../../../utils/constants/app_images.dart';
 import '../../widgets/banner_slider.dart';
 import '../notification/notification_screen/notification_screen.dart';
+
 
 
 final GlobalKey <ScaffoldState> keyContext = GlobalKey();
@@ -24,19 +26,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  var listBanner = [
-    {
-      "id":1,
-      "image":""
-    },
-    {
-      "id":2,
-      "image":""
-    },
-    {
-      "id":3,
-      "image":""
-    }
+
+  final Map<int, String> listShop = {1:'Khmer', 2: 'Asian', 3: 'Korean', 4: 'Japan', 5: 'FastFood', 6: 'Thai'};
+
+  List<Map<String, dynamic>> users = [
+    {'name': 'John', 'age': 30},
+    {'name': 'Alice', 'age': 25},
+    {'name': 'Bob', 'age': 35}
+  ];
+  List<String> listPromotion = [
+    "https://static.vecteezy.com/system/resources/thumbnails/036/804/355/small/ai-generated-assorted-indian-food-on-dark-wooden-background-free-photo.jpg",
+    "https://marketplace.canva.com/EAFqj6plqhY/1/0/1600w/canva-cream-retro-fresh-delicious-menu-banner-landscape-30JXYs045So.jpg",
+    "https://www.shutterstock.com/image-vector/banner-template-burger-restaurant-260nw-1708635589.jpg",
+    "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/359597152/original/714951ac39e1251552fa8ba233d55f7d3c3a1341/design-food-drink-product-banner-and-restaurant-banners.png",
+    "https://cdn3.f-cdn.com//files/download/169583946/restaurent%20banner%201-01.jpg?width=780&height=296&fit=crop",
+  ];
+  List<String> listBanner = [
+    "https://static.vecteezy.com/system/resources/thumbnails/036/804/355/small/ai-generated-assorted-indian-food-on-dark-wooden-background-free-photo.jpg",
+    "https://marketplace.canva.com/EAFqj6plqhY/1/0/1600w/canva-cream-retro-fresh-delicious-menu-banner-landscape-30JXYs045So.jpg",
+    "https://www.shutterstock.com/image-vector/banner-template-burger-restaurant-260nw-1708635589.jpg",
+    "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/359597152/original/714951ac39e1251552fa8ba233d55f7d3c3a1341/design-food-drink-product-banner-and-restaurant-banners.png",
+    "https://cdn3.f-cdn.com//files/download/169583946/restaurent%20banner%201-01.jpg?width=780&height=296&fit=crop",
   ];
 
   bool circleButtonToggle = false;
@@ -147,8 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _start = 10;
 
   void startTimer() {
-    const oneSec = const Duration(seconds: 10);
-    _timer = new Timer.periodic(
+    const oneSec = Duration(minutes: 30);
+    _timer = Timer.periodic(
       oneSec,
           (Timer timer) {
         if (_start == 0) {
@@ -218,9 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
       //   startTimer();
       // },
       child: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xffF7F7F7),
         appBar: AppBar(
+          backgroundColor: Colors.lightBlueAccent,
           elevation: 0,
+
           title: Container(
             // color: Colors.yellow,
             width: double.infinity,
@@ -234,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // color: Colors.pink,
                     height: 40,
                     child: Center(
-                      child: Image.asset(AppImages.logo, color: Colors.white,)
+                      child: Image.asset(AppImages.logo, color: Color(0xffF7F7F7),)
                     ),
                   ),
                 ),
@@ -246,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     decoration: BoxDecoration(
                         border: Border.all(width: .2,color: Colors.grey),
-                        color: Colors.white,
+                        color: Color(0xffF7F7F7),
                         borderRadius: BorderRadius.circular(8)
                     ),
                     child: Center(
@@ -282,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Colors.white,
+            // color: Colors.pink,
             child: Column(
               children: [
                 Stack(
@@ -291,11 +303,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Container(
                           height: 90,
-                          color: Colors.red,
+                          color: Colors.lightBlueAccent,
                         ),
                         Container(
                           height: 110,
-                          color: Colors.white,
+                          color: Color(0xffF7F7F7),
                         ),
                       ],
                     ),
@@ -303,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         top: 15,
                         right: 0,
                         left: 0,
-                        child: BannerSlider(listBanner: listBanner,)
+                        child: BannerSlider(listBanner: listBanner[index],)
 
                     ),
                   ],
@@ -311,94 +323,100 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
                 Container(
-                  color: Colors.white,
+                  // color: Colors.blue,
                   child: Column(
                     children: [
+                      ///Categories
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 18.px),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Categories",style: AppTextStyle().textS(),),
-                            Text("See all",style: AppTextStyle().textS(),),
+                            Text("Categories",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
+                            Text("See all",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
 
                           ],
                         ),
                       ),
+                      ///Categories
                       Container(
                         height: 200,
 
                         margin: EdgeInsets.symmetric(horizontal: 18.px,vertical: 18.px),
-                        padding: EdgeInsets.symmetric(vertical: 20.px),
+                        // padding: EdgeInsets.symmetric(vertical: 50.px),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.white,
+                          color: Color(0xffF7F7F7),
                           boxShadow: [
                             BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
                           ]
                         ),
-                        child: GridView.count(
-                            crossAxisCount: 3,
-                          childAspectRatio:1.30,
-
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: List.generate(6, (index) => _buildCategoryItem()),
-                        ),
-
+                        child: _buildCategoryItem(),
                       ),
+
+                      ///Promotions
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 18.px),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Promotions",style: AppTextStyle().textS(),),
-                            Text("See all",style: AppTextStyle().textS(),),
+                            Text("Promotions",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
+                            Text("See all",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
 
                           ],
                         ),
                       ),
+                      ///Promotions
                       Container(
                         margin: EdgeInsets.only(top: 20.px,bottom: 20.px),
-                        height: MediaQuery.of(context).size.width/2.2.px,
+                        height: MediaQuery.of(context).size.width/2.4.px,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 7,
+                          itemCount: listPromotion.length,
                           padding: EdgeInsets.symmetric(horizontal: 20.px),
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context,index){
-                            return _buildPromotionItem();
+                            return Container(
+                              // margin: EdgeInsets.only(right: 15.px),
+                              // height: 30,
+                              // width: MediaQuery.of(context).size.width/1.3,
+                              // color: Colors.green,
+                              margin: EdgeInsets.only(right: 20),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network("${listPromotion[index]}")),
+
+                            );
                           },
                         ),
                       ),
+                      ///Shop
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 18.px),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Shops",style: AppTextStyle().textS(),),
-                            Text("See all",style: AppTextStyle().textS(),),
+                            Text("Shops",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
+                            Text("See all",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
 
                           ],
                         ),
                       ),
+                      ///Shop
                       Container(
-                        height: 280,
+                        height: 330,
 
-                        margin: EdgeInsets.symmetric(horizontal: 5.px,vertical: 1.px),
-                        padding: EdgeInsets.symmetric(vertical: 20.px),
-
-                        child: GridView.count(
-                          crossAxisCount: 3,
-                          childAspectRatio:1.10,
-
-
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: List.generate(6, (index) => _buildShopItem()),
+                        margin: EdgeInsets.symmetric(horizontal: 18.px,vertical: 18.px),
+                        // padding: EdgeInsets.symmetric(vertical: 50.px),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
                         ),
-
+                        child: _buildShopItem()
                       ),
 
                     ],
@@ -414,40 +432,224 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   _buildCategoryItem(){
     return Column(
-      children: const [
-        Icon(Icons.local_printshop_outlined,size: 40,),
-        Text("Food")
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsKNSFSoay4DeyJnNU_Pw9nYZrR7JXxMmwdeXwGT0TbqM1qr1KAgEERHa6BsiZlG-UR18&usqp=CAU"),
+                ),
+                Text("Burger")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://img.clipart-library.com/2/clip-food-cartoon/clip-food-cartoon-10.jpg"),
+                ),
+                Text("Stack")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://images.vexels.com/content/230824/preview/pink-drink-cartoon-a5a442.png"),
+                ),
+                Text("Drink")
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 10,),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://i.pinimg.com/originals/d8/10/e7/d810e739470e31ac8c762583bce3db99.jpg"),
+                ),
+                Text("Fruit")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://banner2.cleanpng.com/lnd/20240418/wlt/transparent-3d-cartoon-food-sushi-roll-raw-fish-vegetables-woo-sushi-roll-with-raw-fish-and-vegetables6620b36857f983.24885109.webp"),
+                ),
+                Text("Shu Si")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://banner2.cleanpng.com/lnd/20240818/k/e6285e8abc2d80334daffe72bf1446.webp"),
+                ),
+                Text("Donat")
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
   _buildShopItem(){
     return Column(
-      children:  [
-        Container(
-            margin: EdgeInsets.all(10.px),
-            padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.red,
-                boxShadow: [
-                  BoxShadow(color: Colors.red.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                ]
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://media1.thehungryjpeg.com/thumbs/800_3909546_0e7ypmde3pv2ro2252ssehtbrb4k8g6liq1teslt.jpg"),
+                ),
+                Text("Burger")
+              ],
             ),
-            child: Icon(Icons.local_printshop_outlined,size: 40,)),
-        Text("Shop")
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://img.lovepik.com/png/20231115/restaurant-clipart-cute-shop-with-an-orange-awning-cartoon-vector_596059_wh860.png"),
+                ),
+                Text("Stack")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://static.vecteezy.com/system/resources/previews/015/131/796/original/flat-cartoon-style-shop-facade-front-view-modern-flat-storefront-or-supermarket-design-png.png"),
+                ),
+                Text("Drink")
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 30,),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://www.pngitem.com/pimgs/m/292-2928190_supermarket-building-grocery-vector-png-transparent-png.png"),
+                ),
+                Text("Fruit")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://cdn.vectorstock.com/i/1000v/47/74/cartoon-pet-shop-vector-35844774.jpg"),
+                ),
+                Text("Shu Si")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://t4.ftcdn.net/jpg/03/12/84/89/360_F_312848906_cxG09JQbnzeJgQqx6wEpV0I6BLPrDftg.jpg"),
+                ),
+                Text("Donat")
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 30,),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://cdni.iconscout.com/illustration/premium/thumb/coffee-shop-illustration-download-in-svg-png-gif-file-formats--cafe-area-bar-building-pack-food-drink-illustrations-5325681.png"),
+                ),
+                Text("Fruit")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://cdni.iconscout.com/illustration/premium/thumb/coffee-shop-illustration-download-in-svg-png-gif-file-formats--delicious-logo-cafe-area-table-or-ice-cream-pack-restaurants-bar-illustrations-3282823.png"),
+                ),
+                Text("Shu Si")
+              ],
+            ),
+            SizedBox(width: 50,),
+            Column(
+              children:  [
+                Container(
+                  width: 70,
+                  height: 50,
+                  child: Image.network("https://cdn.pixabay.com/photo/2021/05/27/18/55/woman-6289052_1280.png"),
+                ),
+                Text("Donat")
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
 
   _buildPromotionItem(){
     return Container(
-      margin: EdgeInsets.only(right: 15.px),
-      height: 30,
-      width: MediaQuery.of(context).size.width/1.3,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(8)
-      ),
+      // margin: EdgeInsets.only(right: 15.px),
+      // height: 30,
+      // width: MediaQuery.of(context).size.width/1.3,
+      // color: Colors.green,
+      margin: EdgeInsets.only(right: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+          child: Image.network("https://d2vwvwqb5i5vtf.cloudfront.net/homeHero/593ee0a2-0e33-410c-94fa-9616413af5e5.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZLUM7VHYRRYIMZ7H%2F20240905%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240905T091106Z&X-Amz-Expires=432000&X-Amz-Signature=80dff5479ba61278cf41de5e60a1192213a607ab63ad8718b5c525282901cee9&X-Amz-SignedHeaders=host")),
 
     );
   }

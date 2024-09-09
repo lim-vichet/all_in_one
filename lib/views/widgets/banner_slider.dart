@@ -10,6 +10,14 @@ import '../../utils/constants/app_colors.dart';
 
 class BannerSlider extends StatelessWidget {
   var listBanner;
+
+   List<String> listBannerImage = [
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/food-menu-promotion-banner-2x6-design-template-829dd4c0a9901048bf81549ea076baa7_screen.jpg?ts=1633750162",
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/food-offer-banner-design-template-ef081783b8a58d80662aae948311ef45_screen.jpg?ts=1615117868",
+    "https://www.shutterstock.com/image-vector/banner-template-burger-restaurant-260nw-1708635589.jpg",
+    "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/359597152/original/714951ac39e1251552fa8ba233d55f7d3c3a1341/design-food-drink-product-banner-and-restaurant-banners.png",
+    "https://img.freepik.com/free-vector/flat-design-food-sale-banner-with-special-offer_23-2149113276.jpg",
+  ];
   BannerSlider({Key? key, this.listBanner}) : super(key: key);
 
   @override
@@ -49,7 +57,7 @@ class BannerSlider extends StatelessWidget {
                               .onIndicatorChange(index);
                         },
                         autoPlayCurve: Curves.ease),
-                    itemCount: listBanner.length,
+                    itemCount: listBannerImage.length,
                     itemBuilder:
                         (BuildContext context, int index, int realIndex) {
                       return InkWell(
@@ -64,7 +72,7 @@ class BannerSlider extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.width / 2.5.px,
                             imageUrl:
-                                "https://www.orangemantra.com/blog/wp-content/uploads/2015/12/ecommerce-web-development.jpg",
+                                "${listBannerImage[index]}",
                             placeholder: (context, url) => Center(
                               child: SizedBox(
                                 width: 30.px,
@@ -89,7 +97,7 @@ class BannerSlider extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: DotsIndicator(
-                    dotsCount: listBanner.length,
+                    dotsCount: listBannerImage.length,
                     position: context.read<DotIndicatorCubit>().currentIndex * 1,
                     decorator: DotsDecorator(
                       spacing: const EdgeInsets.only(
