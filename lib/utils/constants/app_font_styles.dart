@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+
 import 'app_colors.dart';
 
 class AppTextStyle {
@@ -12,16 +13,166 @@ class AppTextStyle {
 
   AppTextStyle._internal();
 
-  TextStyle primaryTitle(
+  TextStyle titleAppBar(
+      {double fontSize = 17,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w500,
+        String fontFamily = "Rubik",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+  TextStyle textButton(
       {double fontSize = 16,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w600,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration,}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+  TextStyle textLabelDetail(
+      {double fontSize = 15,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w400,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+
+  TextStyle textTitleDetail(
+      {double fontSize = 16,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w500,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+  TextStyle primaryTitle(
+      {double fontSize = 15,
         Color color = Colors.black,
         Color stokeColor = Colors.white,
         bool hasStroke=false,
         double lineHeight = 0,
         FontWeight fontWeight = FontWeight.bold,
         String fontFamily = "",
-        TextDecoration? textDecoration,
-      }) {
+
+
+        TextDecoration? textDecoration}) {
     return TextStyle(
         fontSize: fontSize.sp,
         fontWeight: fontWeight,
@@ -47,8 +198,13 @@ class AppTextStyle {
               color: stokeColor
           ),
         ]
+      // foreground: Paint()
+      //   ..style = PaintingStyle.stroke
+      //   ..strokeWidth = 10
+      //   ..color = Colors.red,
     );
   }
+
   TextStyle titleL(
       {double fontSize = 20,
         Color color = Colors.black,
@@ -87,7 +243,7 @@ class AppTextStyle {
   }
 
   TextStyle titleM(
-      {double fontSize = 17,
+      {double fontSize = 16,
         Color color = Colors.black,
         double lineHeight = 0,
         FontWeight fontWeight = FontWeight.bold,
@@ -159,6 +315,119 @@ class AppTextStyle {
         ]
     );
   }
+
+
+  TextStyle textDialogChat(
+      {double fontSize = 16,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w400,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+  TextStyle titleCard(
+      {double fontSize = 16,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w500,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
+  TextStyle titleCardHomeGrid(
+      {double fontSize = 14,
+        Color color = Colors.black,
+        double lineHeight = 0,
+        FontWeight fontWeight = FontWeight.w500,
+        String fontFamily = "",
+        Color stokeColor = Colors.white,
+        bool hasStroke=false,
+        TextDecoration? textDecoration}) {
+    return TextStyle(
+        fontSize: fontSize.sp,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: fontFamily,
+        decoration: textDecoration,
+        height: lineHeight.sp,
+        shadows: !hasStroke?null: [
+          Shadow( // bottomLeft
+              offset: const Offset(-1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // bottomRight
+              offset: const Offset(1.5, -1.5),
+              color: stokeColor
+          ),
+          Shadow( // topRight
+              offset: const Offset(1.5, 1.5),
+              color: stokeColor
+          ),
+          Shadow( // topLeft
+              offset: const Offset(-1.5, 1.5),
+              color: stokeColor
+          ),
+        ]
+    );
+  }
+
   TextStyle primaryText(
       {double fontSize = 15,
         Color color = Colors.black,
@@ -195,6 +464,7 @@ class AppTextStyle {
         ]
     );
   }
+
   TextStyle textL(
       {double fontSize = 18,
         Color color = Colors.black,
@@ -254,11 +524,11 @@ class AppTextStyle {
 
 
   TextStyle textTitleDialog(
-      {double fontSize = 15.5,
+      {double fontSize = 16.5,
         Color color = Colors.black,
         double lineHeight = 0,
 
-        FontWeight fontWeight = FontWeight.normal,
+        FontWeight fontWeight = FontWeight.w500,
         String fontFamily = "",
         Color stokeColor = Colors.white,
         bool hasStroke=false,

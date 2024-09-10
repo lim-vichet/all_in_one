@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 
 
 import '../../../utils/constants/url_path.dart';
+import '../../models/login_email_model/login_email_model.dart';
 import '../../models/login_model/login_model.dart';
 import '../../models/network_error_model/network_error_model.dart';
 import '../../repositories/login_repository/login_repository.dart';
@@ -26,6 +27,32 @@ class LoginService extends LoginRepository{
       );
       log("message-------${response}");
       return Right(UserInformationModel.fromJson(response));
+    } on DioException catch (e) {
+      var error = await NetworkErrorHandler().exec(e);
+      return Left(
+        NetworkErrorModel(
+          title: error!.title,
+          description: error.description,
+          statusCode: error.statusCode,
+        ),
+      );
+    }
+  }
+}
+
+class LoginEmailService extends LoginEmailRepo{
+  @override
+  Future<Either<NetworkErrorModel, EmailLoginModel>> postLoginEmail({required String email, required String password}) async {
+    try {
+      var response = await BaseAPIService().post(
+          UrlPath.login,
+          body:{
+            "email" : email,
+            "password" : password,
+          }
+      );
+      log("message-------${response}");
+      return Right(EmailLoginModel.fromJson(response));
     } on DioException catch (e) {
       var error = await NetworkErrorHandler().exec(e);
       return Left(

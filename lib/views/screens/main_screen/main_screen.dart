@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:all_in_one/views/screens/drawer_screen/drawer_item/drawer_item.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,14 +21,16 @@ import '../../widgets/bottom_nav_icon.dart';
 import '../../widgets/internet_connection_screen/internet_connection_widget.dart';
 import '../account_screen/account_screen.dart';
 import '../cart_screen/cart_screen.dart';
+import '../home_function/home_function.dart';
+import '../home_package/home_package.dart';
 import '../home_screen/home_screen.dart';
 import '../order_screen/order_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:googleapis_auth/auth_io.dart' as auth;
 
 
-
-
+final scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> keyContext = GlobalKey();
 class MainScreen extends StatefulWidget {
   static const String routeName = "/main_screen";
 
@@ -38,7 +41,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GlobalKey<ScaffoldState> keyContext = GlobalKey();
+
+
+
 
   String accessToken = '';
 
@@ -255,24 +260,26 @@ class _MainScreenState extends State<MainScreen> {
         child: BlocBuilder<BottomNavCubit, int>(
           builder: (context, state) {
             return Scaffold(
-              key: keyContext,
+              key: scaffoldKey,
               /// Test Notification
-              floatingActionButton: FloatingActionButton(onPressed: (){
-                sendPushMessage(
-                  recipientToken: "cuhwvmdHSbaol_xh1Wdh0P:APA91bHqlGth75larXgxMdRoAOySYFr_usmuUXN8S2geoh_Rb33WrLMs618UgD6k-o3H80gguLC9tO0X944ntvKCMRR33ESr4Bsjc4euadGzWTvTgXisufGlvVhEEAdsk4JAdL9Wm2Ox",
-                  body: "Hello Body",
-                  title: "Hello Title",
-                );
-              }, child: Icon(Icons.my_location),),
+              // floatingActionButton: FloatingActionButton(onPressed: (){
+              //   sendPushMessage(
+              //     recipientToken: "cuhwvmdHSbaol_xh1Wdh0P:APA91bHqlGth75larXgxMdRoAOySYFr_usmuUXN8S2geoh_Rb33WrLMs618UgD6k-o3H80gguLC9tO0X944ntvKCMRR33ESr4Bsjc4euadGzWTvTgXisufGlvVhEEAdsk4JAdL9Wm2Ox",
+              //     body: "Hello Body",
+              //     title: "Hello Title",
+              //   );
+              // }, child: Icon(Icons.my_location),),
               /// Test Notification
+
+              drawer: DrawerItem(),
               body: InternetConnectWidget(
                 child: LazyLoadIndexedStack(
                   index: BlocProvider.of<BottomNavCubit>(context).currentIndex,
                   children: const [
                     HomeScreen(),
-                    OrderScreen(),
-                    CartScreen(),
-                    AccountScreen()
+                    HomePackage(),
+                    HomeFunction(),
+                    HomePackage(),
                   ],
                 ),
               ),
@@ -314,14 +321,14 @@ class _MainScreenState extends State<MainScreen> {
                           icon: Icons.list_alt_outlined, isActive: false),
                       activeIcon: bottomNavIcon(
                           icon: Icons.list_alt_outlined, isActive: true),
-                      label: "Order",
+                      label: "Package",
                     ),
                     BottomNavigationBarItem(
                       icon: bottomNavIcon(
                           icon: Icons.shopping_cart_outlined, isActive: false),
                       activeIcon: bottomNavIcon(
                           icon: Icons.shopping_cart_outlined, isActive: true),
-                      label: "Cart",
+                      label: "Function",
                     ),
                     BottomNavigationBarItem(
                       icon: bottomNavIcon(

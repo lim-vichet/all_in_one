@@ -4,7 +4,6 @@ class UrlPath {
   // static  String mainUrl =  "${BaseAPIService().mainUrl}/";
   static  String product =  "sliders";
   static  String category =  "category";
-
-  static String login = "ecm/auth/login";
+  static String login = "login";
 
 }

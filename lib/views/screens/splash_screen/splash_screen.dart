@@ -3,17 +3,24 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_images.dart';
+import '../../../utils/shared_preferences_service.dart';
 import '../accesstoken/accesstoken.dart';
 import '../auth/login_screen/login_screen.dart';
 import '../main_screen/main_screen.dart';
 import '../test_auth/signup.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   static const String routeName = "/splash_screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
     Future.delayed(
       const Duration(seconds: 2),
           () {
@@ -36,16 +43,22 @@ class SplashScreen extends StatelessWidget {
         //     currectLang = const Locale('en', 'US');
         //   }
         //   Get.updateLocale(currectLang);
-          // Get.to(RecodeScreen());
+        // Get.to(RecodeScreen());
 
-            // Navigator.pushNamedAndRemoveUntil(context, SignUpScreen.routeName, (route) => false);
-            Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
-          // Navigator.pushNamedAndRemoveUntil(context, MyHomePage.routeName, (route) => false);
+        // Navigator.pushNamedAndRemoveUntil(context, SignUpScreen.routeName, (route) => false);
+        SharedPreferencesService.instance!.getUserRole == ""?
+        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false):
+        Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (route) => false);
+        // Navigator.pushNamedAndRemoveUntil(context, MyHomePage.routeName, (route) => false);
 
 
         // }
       },
     );
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
     return  Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,

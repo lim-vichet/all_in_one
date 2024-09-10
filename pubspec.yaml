@@ -67,6 +67,12 @@ dependencies:
   floating_bottom_bar: ^0.0.3
   overlay_support: ^2.1.0
   googleapis_auth: ^1.6.0
+  dotted_line: ^3.2.2
+  dotted_border: ^2.0.0+3
+  select_form_field: ^2.2.0
+  dropdown_button2: ^2.3.7
+  dotted_dashed_line: ^0.0.3
+
 
 
 

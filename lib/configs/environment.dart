@@ -1,14 +1,14 @@
-enum Environment { dev, production, staging }
+enum Environment { SIT, Prod, UAT }
 
 extension EnvironmentExtension on Environment {
   String value() {
     switch (this) {
-      case Environment.production:
+      case Environment.Prod:
         return 'lib/configs/prod_config.json';
-      case Environment.staging:
-        return 'lib/configs/staging_config.json';
+      case Environment.UAT:
+        return 'lib/configs/uat_config.json';
       default:
-        return 'lib/configs/dev_config.json';
+        return 'lib/configs/sit_config.json';
     }
   }
 }

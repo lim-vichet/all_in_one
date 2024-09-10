@@ -37,16 +37,6 @@ class SharedPreferencesService {
 
   String? get token => _preferences?.getString('token');
 
-  Future<void> setUserId(String token) async =>
-      await _preferences?.setString('userId', token);
-
-  String? get getUserId => _preferences?.getString('userId');
-
-  Future<void> setUserAddress(String token) async =>
-      await _preferences?.setString('userAdd', token);
-
-  String? get getUserAddress => _preferences?.getString('userAdd');
-
   Future<void> resetToken() async => await _preferences?.remove('token');
 
   //Set Firbase User Token
@@ -56,11 +46,11 @@ class SharedPreferencesService {
   String? get firebaseUserToken =>
       _preferences?.getString('firebase_user_token');
 
-  //Set Firbase User Token
-  Future<void> setLanguages(String token) async =>
-      await _preferences?.setString('languages', token);
+  //Set Language
+  Future<void> setLanguage(String lang) async =>
+      await _preferences?.setString('language', lang);
 
-  String? get getLanguages => _preferences?.getString('languages');
+  String? get getLanguage => _preferences?.getString('language');
 
   //Set User Profile
   Future<void> setUserProfile(String userProfile) async =>
@@ -68,14 +58,39 @@ class SharedPreferencesService {
 
   String? get getUserProfile => _preferences?.getString('user_profile');
 
-
   //Set User Profile
-  Future<void> setCartData(String data) async =>
-      await _preferences?.setString('cart_data_local', data);
+  Future<void> setUserId(String userId) async =>
+      await _preferences?.setString('user_id_login', userId);
 
-  String? get getCartData => _preferences?.getString('cart_data_local');
+  String? get getUserId => _preferences?.getString('user_id_login');
 
   Future<void> clear() async {
-    await _preferences?.clear();
+    await _preferences!.clear();
   }
+
+
+  //Set User Role
+  Future<void> setUserRole(String userRole) async =>
+      await _preferences?.setString('user-role', userRole);
+
+  String? get getUserRole => _preferences!.getString('user-role');
+
+  //Set Customer Profile
+  Future<void> setCustomerProfile(String customerProfile) async =>
+      await _preferences!.setString('informationCustomer', customerProfile);
+
+  String? get getCustomerProfile => _preferences?.getString('informationCustomer');
+
+
+
+
+
+//Set User Permission
+  Future<void> setUserPermission(String userPermission) async =>
+      await _preferences!.setString('infoUserPermission', userPermission);
+
+  String? get getUserPermission => _preferences?.getString('infoUserPermission');
+
+
+
 }

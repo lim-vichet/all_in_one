@@ -10,3 +10,13 @@ class EventLogin extends LoginEvent{
     required this.language
 });
 }
+
+class EventLoginEmail extends LoginEvent{
+  String email;
+  String password;
+
+  EventLoginEmail({
+    required this.email,
+    required this.password
+  });
+}

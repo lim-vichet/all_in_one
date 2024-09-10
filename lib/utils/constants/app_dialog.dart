@@ -442,7 +442,7 @@ class AppDialog {
                     () {
                       Get.back();
                     },
-                color: AppColors().yellowed,
+                color: AppColors().yellow,
                 radius: BorderRadius.circular(12.0),
                 child: Text(
                   titleButtonCancel!,
@@ -1114,7 +1114,7 @@ class AppDialog {
                         ),
                         margin: EdgeInsets.symmetric(horizontal: 5.px),
                         decoration: BoxDecoration(
-                            color: AppColors().yellowed,
+                            color: AppColors().yellow,
                             borderRadius: BorderRadius.circular(20.px)),
                         child: Center(
                           child: Text(

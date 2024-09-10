@@ -1,11 +1,12 @@
+
 {
-    "host": "http://103.101.80.108:8081",
-    "base_url": "http://103.101.80.108:8081",
-    "root_api": "http://103.101.80.108:8081/api/",
+    "host": "http://10.2.3.2:8081",
+    "base_url": "http://10.2.3.2:8081",
+    "root_api": "http://10.2.3.2:8081/api/",
     "production_url_aba": "https://checkout-sandbox.payway.com.kh/api/payment-gateway/v1/payments/purchase",
     "create_transaction_url_aba": "https://www.staging.nsn-birdnest.com/api/v1/user/order/create-transaction",
     "check_transaction_url_aba": "https://www.staging.nsn-birdnest.com/api/v1/user/order/check-transaction",
-    "host_socket": "103.101.80.108",
+    "host_socket": "10.2.3.2",
     "port_socket": "6001",
-    "appKey": "4d443e16a381896b5732"
+    "appKey": "80edb07638ab176c43d3"
 }

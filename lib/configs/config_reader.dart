@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-
 import 'package:flutter/services.dart';
 
 import 'environment.dart';
@@ -38,4 +36,16 @@ abstract class ConfigReader {
   static String checkTransactionUrlABA() {
     return _config?['check_transaction_url_aba'] as String;
   }
+  static String hostSocket() {
+    return _config?['host_socket'] as String;
+  }
+
+  static String portSocket() {
+    return _config?['port_socket'] as String;
+  }
+
+  static String appKey() {
+    return _config?['appKey'] as String;
+  }
+
 }

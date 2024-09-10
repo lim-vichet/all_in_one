@@ -10,6 +10,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../utils/constants/app_font_styles.dart';
 import '../../../utils/constants/app_images.dart';
 import '../../widgets/banner_slider.dart';
+import '../drawer_screen/drawer_item/drawer_item.dart';
+import '../main_screen/main_screen.dart';
 import '../notification/notification_screen/notification_screen.dart';
 
 
@@ -229,10 +231,24 @@ class _HomeScreenState extends State<HomeScreen> {
       // },
       child: Scaffold(
         backgroundColor: Color(0xffF7F7F7),
+        // drawer: DrawerItem(),
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
           elevation: 0,
-
+          iconTheme: IconThemeData(color: Colors.white),
+          // automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () {
+              if(scaffoldKey.currentState!.isDrawerOpen){
+                scaffoldKey.currentState!.closeDrawer();
+                //close drawer, if drawer is open
+              }else{
+                scaffoldKey.currentState!.openDrawer();
+                //open drawer, if drawer is closed
+              }
+            },
+          ),
           title: Container(
             // color: Colors.yellow,
             width: double.infinity,
@@ -240,22 +256,10 @@ class _HomeScreenState extends State<HomeScreen> {
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  flex: 1,
-                  child: Container(
-                    margin: EdgeInsets.only(left: 5.px),
-                    // color: Colors.pink,
-                    height: 40,
-                    child: Center(
-                      child: Image.asset(AppImages.logo, color: Color(0xffF7F7F7),)
-                    ),
-                  ),
-                ),
-                Expanded(
                   flex:8,
                   child: Container(
                     margin: EdgeInsets.only(left: 22.px,right: 18.px),
                     padding: EdgeInsets.symmetric(horizontal: 12.px,vertical: 8.px),
-
                     decoration: BoxDecoration(
                         border: Border.all(width: .2,color: Colors.grey),
                         color: Color(0xffF7F7F7),
@@ -275,23 +279,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    margin: EdgeInsets.only(right: 5.px),
-                    // color: Colors.blue,
-
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.pushNamed(context, NotificationScreen.routeName);
-                      },
-                      child: Center(
-                        child: Icon(Icons.notifications_none_outlined,size: 30,color: Colors.white,),
-                      ),
+                    margin: EdgeInsets.only(left: 5.px),
+                    // color: Colors.pink,
+                    height: 40,
+                    child: Center(
+                        child: Image.asset(AppImages.logo, color: Color(0xffF7F7F7),)
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ),
+
         body: SingleChildScrollView(
           child: Container(
             // color: Colors.pink,
@@ -338,6 +338,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+
+
                       ///Categories
                       Container(
                         height: 200,

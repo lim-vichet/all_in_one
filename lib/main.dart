@@ -180,7 +180,7 @@ void main() async {
     log("ContentContent $idTokenFirebase \n\n\n\n");
   });
   // subscribeT();
-  await ConfigReader.initialize(Environment.dev);
+  await ConfigReader.initialize(Environment.UAT);
   runApp(const MyApp());
 
 

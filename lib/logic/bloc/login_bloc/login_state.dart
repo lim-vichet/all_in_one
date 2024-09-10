@@ -16,3 +16,7 @@ class LoginInSuccess extends LoginState {
     required this.language
  });
 }
+class LoginEmailSuccess extends LoginState {
+  List<StaffEmailLogin> staffEmailLogin;
+  LoginEmailSuccess({required this.staffEmailLogin});
+}
