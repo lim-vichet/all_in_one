@@ -8,6 +8,7 @@ import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_dimensions.dart';
 import '../../../utils/constants/app_font_styles.dart';
 import '../home_screen/home_screen.dart';
+import 'attendance/attendance.dart';
 
 class HomeFunction extends StatefulWidget {
   const HomeFunction({super.key});
@@ -40,7 +41,7 @@ class _HomeFunctionState extends State<HomeFunction> {
                     SizedBox(height: 15.px),
                     InkWell(
                       onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
+                        ConfigRouter.pushPage(context, const AttendanceScreen());
                       },
                       child: Container(
                         height: 70.px,
@@ -57,13 +58,13 @@ class _HomeFunctionState extends State<HomeFunction> {
                             Expanded(
                                 flex: 2,
                                 child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
+                                  Icons.schedule,
+                                  color: AppColors().green,
                                 )),
                             Expanded(
                               flex: 8,
                               child: Text(
-                                "Image Picker".tr,
+                                "Attendance".tr,
                                 style: AppTextStyle().textL(),
                               ),
                             ),
