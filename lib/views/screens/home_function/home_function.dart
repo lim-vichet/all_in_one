@@ -9,6 +9,7 @@ import '../../../utils/constants/app_dimensions.dart';
 import '../../../utils/constants/app_font_styles.dart';
 import '../home_screen/home_screen.dart';
 import 'attendance/attendance.dart';
+import 'form/list_form.dart';
 
 class HomeFunction extends StatefulWidget {
   const HomeFunction({super.key});
@@ -30,11 +31,11 @@ class _HomeFunctionState extends State<HomeFunction> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   children: [
@@ -73,16 +74,16 @@ class _HomeFunctionState extends State<HomeFunction> {
                       ),
                     ),
                     SizedBox(height: 15.px),
-                    InkWell(
+                    InkWell (
                       onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
+                        ConfigRouter.pushPage(context, const ListForm());
                       },
                       child: Container(
                         height: 70.px,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
+                            color: const Color(0xffF7F7F7),
                             boxShadow: [
                               BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
                             ]
@@ -98,7 +99,7 @@ class _HomeFunctionState extends State<HomeFunction> {
                             Expanded(
                               flex: 8,
                               child: Text(
-                                "Image Picker".tr,
+                                "ListForm".tr,
                                 style: AppTextStyle().textL(),
                               ),
                             ),
@@ -106,177 +107,7 @@ class _HomeFunctionState extends State<HomeFunction> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Image Picker".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Image Picker".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Image Picker".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Image Picker".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const HomeScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.image_search,
-                                  color: AppColors().primaryRed,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Image Picker".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.px),
+
 
                   ],
                 ),

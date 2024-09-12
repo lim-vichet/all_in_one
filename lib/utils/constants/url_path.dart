@@ -8,6 +8,8 @@ class UrlPath {
   static  String category =  "category";
   static String login = "login";
   static String attendanceUser = "employees/profile/userAttendance";
+  static String upload = "upload";
+  static String user = "user";
 
 
 
