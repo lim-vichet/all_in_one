@@ -13,6 +13,7 @@ import '../../../../utils/constants/app_font_styles.dart';
 import '../../../../utils/constants/app_images.dart';
 import '../../../../utils/shared_preferences_service.dart';
 import '../../auth/login_screen/login_screen.dart';
+import '../language/language.dart';
 
 
 class DrawerItem extends StatefulWidget {
@@ -64,7 +65,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -91,7 +92,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -118,7 +119,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -141,11 +142,11 @@ class _DrawerItemState extends State<DrawerItem> {
           /// Language
           InkWell(
             onTap: () {
-              // ConfigRouter.pushPage(context, ContactUsScreen());
+              ConfigRouter.pushPage(context, LanguageScreen());
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -172,7 +173,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -199,7 +200,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -226,7 +227,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -252,7 +253,7 @@ class _DrawerItemState extends State<DrawerItem> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
+                color: AppColors().white,
                 border: Border(
                     bottom: BorderSide(
                         color: AppColors().grey.withOpacity(.2), width: 1.0)),
@@ -265,14 +266,12 @@ class _DrawerItemState extends State<DrawerItem> {
                     color: AppColors().black,
                   ),
                 ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.login, color: Colors.lightBlueAccent,
                 ),
               ),
             ),
           ),
-
-
         ],
       ),
     );
