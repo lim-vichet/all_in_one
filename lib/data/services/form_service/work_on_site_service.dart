@@ -1,6 +1,9 @@
 
 
+import 'package:all_in_one/data/models/form_model/list_platnumber_model.dart';
+import 'package:all_in_one/data/models/form_model/list_ticketnumber_model.dart';
 import 'package:all_in_one/data/models/form_model/list_user_model.dart';
+import 'package:all_in_one/data/models/form_model/list_vehicle_type_model.dart';
 import 'package:all_in_one/data/models/network_error_model/network_error_model.dart';
 import 'package:all_in_one/data/repositories/form_repository/work_on_site_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -33,5 +36,75 @@ class ListUserService extends ListUserRepository{
       );
     }
 
+  }
+}
+
+class ListVehicleTypeService extends ListVehicleTypeRepository{
+  @override
+  Future<Either<NetworkErrorModel, ListVehicleTypeModel>> getListVehicleType() async {
+    try {
+      var response = await BaseAPIService().get(
+        // attendancesByDate?date=17-10-2023
+        // "${UrlPath.attendanceUser}/$idUser?fromDate=$dateTo&toDate=$dateFrom&page=$page&show=2",
+        "${UrlPath.vehicleTypes}",
+      );
+      return Right(ListVehicleTypeModel.fromJson(response));
+    }
+    on DioError catch (e) {
+      var error = await NetworkErrorHandler().exec(e);
+      return Left(
+        NetworkErrorModel(
+          title: error!.title,
+          description: error.description,
+          statusCode: error.statusCode,
+        ),
+      );
+    }
+  }
+
+}
+
+class ListTicketNumberService extends ListTicketNumberRepository{
+  @override
+  Future<Either<NetworkErrorModel, ListTicketNumberModel>> getListTicketNumber() async {
+    try {
+      var response = await BaseAPIService().get(
+        // attendancesByDate?date=17-10-2023
+        // "${UrlPath.attendanceUser}/$idUser?fromDate=$dateTo&toDate=$dateFrom&page=$page&show=2",
+        "${UrlPath.ticketNumber}",
+      );
+      return Right(ListTicketNumberModel.fromJson(response));
+    }
+    on DioError catch (e) {
+      var error = await NetworkErrorHandler().exec(e);
+      return Left(
+        NetworkErrorModel(
+          title: error!.title,
+          description: error.description,
+          statusCode: error.statusCode,
+        ),
+      );
+    }
+  }
+
+}
+
+class ListPlateNumberService extends ListPlateNumberRepository{
+  @override
+  Future<Either<NetworkErrorModel, ListPlateNumberModel>> getListPlateNumber({required int vehicleTypeId}) async {
+    try {
+      var response = await BaseAPIService().get("${UrlPath.vehicleTypeByVehicleType}?vehicleTypeId=$vehicleTypeId");
+      return Right(ListPlateNumberModel.fromJson(response));
+    }
+    on DioError catch (e) {
+      var error = await NetworkErrorHandler().exec(e);
+      return Left(
+        NetworkErrorModel(
+          title: error!.title,
+          description: error.description,
+          statusCode: error.statusCode,
+        ),
+      );
+    }
   }
 }

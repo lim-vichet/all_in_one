@@ -8,7 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:select_searchable_list/select_searchable_list.dart';
+import '../../../../../data/models/form_model/list_ticketnumber_model.dart';
 import '../../../../../data/models/form_model/list_user_model.dart';
+import '../../../../../data/models/form_model/list_vehicle_type_model.dart';
 import '../../../../../logic/bloc/form_bloc/work_on_site_bloc/work_on_site_bloc.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_font_styles.dart';
@@ -60,6 +62,12 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
   List<ResultListUser> resultListUser = [];
   late Map<dynamic, dynamic> resultListUserMap = {};
 
+  List<ResultListVehicleType> resultListVehicleType = [];
+  late Map<dynamic, dynamic> resultListVehicleTypeMap = {};
+
+  List<ResultListTicketNumber> resultListTicketNumber = [];
+  late Map<dynamic, dynamic> resultListTicketNumberMap = {};
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -98,8 +106,23 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                 for(var item in resultListUser){
                   final Map<int, String> listUser = {item.id: item.name};
                   resultListUserMap.addAll(listUser);
-                  print("resultListUser=================${jsonEncode(item.name)}");
-                  print("resultListUser=================${jsonEncode(item.id)}");
+                }
+                context.read<WorkOnSiteBloc>().add(EventGetListVehicleType());
+              }
+              else if(state is WorkOnSiteGetVehicleTypeSuccess){
+                resultListVehicleType = state.resultListVehicleType;
+                for(var item in resultListVehicleType){
+                  final Map<int, String> listVehicleType = {item.id: item.vehicleTypeName};
+                  resultListVehicleTypeMap.addAll(listVehicleType);
+                }
+                context.read<WorkOnSiteBloc>().add(EventGetListTicketNumber());
+              }
+              else if(state is WorkOnSiteGetListTicketNumberSuccess){
+                resultListTicketNumber = state.resultListTicketNumber;
+
+                for(var item in resultListTicketNumber){
+                  final Map<int, String> listTicketNumber = {item.id: item.ticketNumber};
+                  resultListTicketNumberMap.addAll(listTicketNumber);
                 }
               }
 
@@ -313,7 +336,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                 ),
                                 hint: 'Transportation_Type'.tr,
                                 title: 'Transportation_Type'.tr,
-                                options: listTransportationMap,
+                                options: resultListVehicleTypeMap,
                                 isError: fieldTransportationType,
                                 decoration: InputDecoration(
                                   filled: true,
@@ -407,7 +430,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                 ),
                                 hint: 'Ticket Number'.tr,
                                 title: 'Ticket Number'.tr,
-                                options: listTransportationMap,
+                                options: resultListTicketNumberMap,
                                 isError: fieldTicketNumber,
                                 decoration: InputDecoration(
                                   filled: true,

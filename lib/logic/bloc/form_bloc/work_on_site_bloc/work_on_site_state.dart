@@ -10,3 +10,15 @@ class WorkOnSiteGetListUserSuccess extends WorkOnSiteState {
   List<ResultListUser> resultListUser;
   WorkOnSiteGetListUserSuccess({required this.resultListUser});
 }
+class WorkOnSiteGetVehicleTypeSuccess extends WorkOnSiteState {
+  List<ResultListVehicleType> resultListVehicleType;
+  WorkOnSiteGetVehicleTypeSuccess({required this.resultListVehicleType});
+}
+class WorkOnSiteGetListTicketNumberSuccess extends WorkOnSiteState {
+  List<ResultListTicketNumber> resultListTicketNumber;
+  WorkOnSiteGetListTicketNumberSuccess({required this.resultListTicketNumber});
+}
+class WorkOnSiteGetListPlateNumberSuccess extends WorkOnSiteState {
+  List<ResultListPlateNumber> resultListPlateNumber;
+  WorkOnSiteGetListPlateNumberSuccess({required this.resultListPlateNumber});
+}

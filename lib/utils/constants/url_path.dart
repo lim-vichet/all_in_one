@@ -10,6 +10,9 @@ class UrlPath {
   static String attendanceUser = "employees/profile/userAttendance";
   static String upload = "upload";
   static String user = "user";
+  static String vehicleTypes = "vehicleTypes";
+  static String ticketNumber = "ticketNumber";
+  static String vehicleTypeByVehicleType = "vehicleTypeByVehicleType";
 
 
 
