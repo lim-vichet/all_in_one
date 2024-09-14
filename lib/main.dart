@@ -145,6 +145,8 @@ import 'configs/environment.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:overlay_support/overlay_support.dart';
 
+import 'languages/language.dart';
+
 
 class MyHttpOverrides extends HttpOverrides{
   @override
@@ -717,9 +719,9 @@ class _MyAppState extends State<MyApp> {
             child: GetMaterialApp(
               title: 'Luna',
               debugShowCheckedModeBanner: false,
-              // locale: currectLang,
-              // translations: Language(),
-              // fallbackLocale: const Locale('en', 'US'),
+              locale: currectLang,
+              translations: Language(),
+              fallbackLocale: const Locale('en', 'US'),
               // initialBinding: GetXNetworkManagerBinding(),
               theme: ThemeData(
                 fontFamily: 'Battambang-Regular',

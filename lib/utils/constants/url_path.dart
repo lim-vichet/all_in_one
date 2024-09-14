@@ -31,4 +31,7 @@ class UrlPath {
   static String unauthenticated = "Unauthenticated";
 
 
+  /// POST
+
+  static String workOnSideForm = "workOnSideForm";
 }

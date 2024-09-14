@@ -56,7 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, MainScreen.routeName);
               });
-
             }
             else if(state is LoginEmailSuccess){
               Future.delayed(Duration(seconds: 5), (){

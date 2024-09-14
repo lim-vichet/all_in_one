@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:all_in_one/data/models/form_model/list_platnumber_model.dart';
 import 'package:all_in_one/data/models/form_model/list_ticketnumber_model.dart';
 import 'package:all_in_one/data/models/form_model/list_user_model.dart';
@@ -10,6 +12,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../utils/constants/url_path.dart';
+import '../../models/form_model/add_work_on_site_form_model.dart';
+import '../../models/upload_model/upload_model.dart';
 import '../main_services/base_api_service.dart';
 import '../main_services/error_handler/network_error_handler.dart';
 
@@ -107,4 +111,56 @@ class ListPlateNumberService extends ListPlateNumberRepository{
       );
     }
   }
+}
+
+
+class AddWorkOnSiteService extends AddWorkOnSiteFormRepository {
+
+  @override
+  Future<Either<NetworkErrorModel, AddWorkOnSiteFormModel>> addWorkOnSiteForm({
+    required approver,
+    required purposeOnside,
+    required dateFrom,
+    required timeFrom,
+    required dateTo,
+    required timeTo,
+    required taskDescription,
+    required locationOnside,
+    required transportationType,
+    required transportation,
+    required workStatus,
+    required workOnsideVehicleId,
+    required ticketId,
+    listResultFile}) async {
+      try {
+        var formData = FormData.fromMap({
+          "approver": approver,
+          "purposeOnside":purposeOnside,
+          "dateFrom":dateFrom,
+          "timeFrom":timeFrom,
+          "dateTo":dateTo,
+          "timeTo":timeTo,
+          "taskDescription":taskDescription,
+          "locationOnside":locationOnside,
+          "transportationType":transportationType,
+          "transportation":transportation,
+          "workStatus":workStatus,
+          "file": UploadModel.listMapFile(listResultFile),
+          "workOnsideVehicleId": workOnsideVehicleId,
+          "ticketId":ticketId,
+
+        });
+        log('formData.fields==============${formData.fields}');
+        var response = await BaseAPIService().post(
+            UrlPath.workOnSideForm,
+            formData: formData
+        );
+        // print("---------------22222 $response");
+        return Right(AddWorkOnSiteFormModel.fromJson(response));
+      } on DioError catch(e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(title: err!.title, description: err!.description, statusCode: err!.statusCode));
+    }
+  }
+
 }

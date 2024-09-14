@@ -25,8 +25,13 @@ class _ListFormState extends State<ListForm> {
         backgroundColor: AppColors().bgColorApp,
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
-          automaticallyImplyLeading: false,
-          title: const Center(child: Text("LIST FORM", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
+          // automaticallyImplyLeading: false,
+          title: Container(
+            padding: EdgeInsets.only(right: 50),
+              child: const Center(child: Text("LIST FORM", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),))),
+          leading: const BackButton(
+            color: Colors.white,
+          ),
         ),
         body: Stack(
           alignment: Alignment.center,

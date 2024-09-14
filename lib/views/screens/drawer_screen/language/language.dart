@@ -85,11 +85,18 @@ class _LanguageScreenState extends State<LanguageScreen> {
                                         height: 40,
                                       )),
                                   Expanded(
-                                    flex: 8,
+                                    flex: 6,
                                     child: Text(
                                       "ភាសាខ្មែរ".tr,
                                       style: AppTextStyle().textL(),
                                     ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child:
+                                    context.read<SelectLanguageCubit>().correctBtn?
+                                    Icon(Icons.check_circle, color: Colors.grey,):
+                                    Icon(Icons.check_circle, color: Colors.red,)
                                   ),
                                 ],
                               ),
@@ -127,11 +134,18 @@ class _LanguageScreenState extends State<LanguageScreen> {
                                         height: 40,
                                       )),
                                   Expanded(
-                                    flex: 8,
+                                    flex: 6,
                                     child: Text(
                                       "English".tr,
                                       style: AppTextStyle().textL(),
                                     ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child:
+                                      context.read<SelectLanguageCubit>().correctBtn?
+                                      Icon(Icons.check_circle, color: Colors.red,):
+                                      Icon(Icons.check_circle, color: Colors.grey,)
                                   ),
                                 ],
                               ),

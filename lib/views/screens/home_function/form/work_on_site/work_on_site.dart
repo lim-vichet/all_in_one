@@ -8,10 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:select_searchable_list/select_searchable_list.dart';
+import '../../../../../data/models/form_model/list_platnumber_model.dart';
 import '../../../../../data/models/form_model/list_ticketnumber_model.dart';
 import '../../../../../data/models/form_model/list_user_model.dart';
 import '../../../../../data/models/form_model/list_vehicle_type_model.dart';
 import '../../../../../logic/bloc/form_bloc/work_on_site_bloc/work_on_site_bloc.dart';
+import '../../../../../utils/constants/app_button.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_font_styles.dart';
 import '../../../../../utils/constants/app_time_picker_bottomsheet.dart';
@@ -68,6 +70,14 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
   List<ResultListTicketNumber> resultListTicketNumber = [];
   late Map<dynamic, dynamic> resultListTicketNumberMap = {};
 
+  List<ResultListPlateNumber> resultListPlateNumber = [];
+  late Map<dynamic, dynamic> resultListPlateNumberMap = {};
+
+
+  /// Variable
+  String vehicleTypeId = '';
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -119,11 +129,22 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
               }
               else if(state is WorkOnSiteGetListTicketNumberSuccess){
                 resultListTicketNumber = state.resultListTicketNumber;
-
                 for(var item in resultListTicketNumber){
                   final Map<int, String> listTicketNumber = {item.id: item.ticketNumber};
                   resultListTicketNumberMap.addAll(listTicketNumber);
                 }
+
+                // context.read<WorkOnSiteBloc>().add(EventGetListPlateNumber());
+              }
+              else if (state is WorkOnSiteGetListPlateNumberSuccess){
+                resultListPlateNumber = state.resultListPlateNumber;
+                for(var item in resultListPlateNumber){
+                  final Map<int, String> listPlateNumber = {item.id: item.vehiclePlateNumber};
+                  resultListPlateNumberMap.addAll(listPlateNumber);
+                  print("resultListPlateNumber==============${jsonEncode(item.id)}");
+                  print("resultListPlateNumber==============${jsonEncode(item.vehiclePlateNumber)}");
+                }
+
               }
 
               return Stack(
@@ -328,8 +349,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
 
                               /// Transportation_Type
                               DropDownTextField(
-                                textEditingController:
-                                    transportationTypeController,
+                                textEditingController: transportationTypeController,
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.normal,
@@ -369,7 +389,11 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                     child: Icon(Icons.arrow_drop_down),
                                   ),
                                 ),
-                                onChanged: (transportationType) {},
+                                onChanged: (transportationType) {
+                                  vehicleTypeId = "${transportationType![0]}";
+                                  print("transportationType===========${vehicleTypeId}");
+                                  context.read<WorkOnSiteBloc>().add(EventGetListPlateNumber(vehicleTypeId: int.parse(vehicleTypeId)));
+                                },
                               ),
                               SizedBox(height: 15.px),
 
@@ -382,7 +406,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                 ),
                                 hint: 'Plate_Number'.tr,
                                 title: 'Plate_Number'.tr,
-                                options: listTransportationMap,
+                                options: resultListPlateNumberMap,
                                 isError: fieldPlateName,
                                 decoration: InputDecoration(
                                   filled: true,
@@ -417,6 +441,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                 ),
                                 onChanged: (platNumber) {
                                   // platNumberName = "${platNumber![0]}";
+                                  print("platNumber==========${platNumber}");
                                 },
                               ),
                               SizedBox(height: 15.px),
@@ -424,7 +449,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                               /// Ticket Number
                               DropDownTextField(
                                 textEditingController: ticketNumberController,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -467,14 +492,20 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                   // ticketName = "${ticketNumber![0]}";
                                 },
                               ),
-
+                              SizedBox(height: 15.px),
                               Container(
                                 padding: EdgeInsets.only(
-                                  bottom: 10.px,
+                                  bottom: 5.px,
                                 ),
-                                child: Text(
-                                  "Reference".tr,
-                                  style: AppTextStyle().titleS(),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Reference".tr,
+                                      style: AppTextStyle().titleS(),
+                                    ),
+                                  ],
                                 ),
                               ),
                               FileAttachmentWidgets(
@@ -482,6 +513,13 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                 getListImage: (List<XFile> list) {
                                   listImage = list;
                                 },
+                              ),
+                              SizedBox(height: 15.px),
+                              AppButton(
+                                onPressed: (){
+                                  // BlocProvider.of<UploadBloc>(uploadContext).add(OnEventXFile(listImage));
+                                },
+                                text: 'Save'.tr,
                               ),
                             ],
                           ),

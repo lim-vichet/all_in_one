@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -10,9 +11,11 @@ class LoadingScreen extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(6.0),
-            child: Icon(Icons.ac_unit_outlined,size: 50,),
+            child:
+            Image.network("https://www.iconarchive.com/download/i108219/google/noto-emoji-smileys/10006-grinning-face-with-smiling-eyes.ico", width: 50,height: 50,)
+            // Icon(Icons.ac_unit_outlined,size: 50,),
           ),
           Positioned.fill(
             child: CircularProgressIndicator(

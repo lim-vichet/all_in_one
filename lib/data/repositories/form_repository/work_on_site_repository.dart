@@ -3,6 +3,7 @@
 import 'package:all_in_one/data/models/network_error_model/network_error_model.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../models/form_model/add_work_on_site_form_model.dart';
 import '../../models/form_model/list_platnumber_model.dart';
 import '../../models/form_model/list_ticketnumber_model.dart';
 import '../../models/form_model/list_user_model.dart';
@@ -22,4 +23,25 @@ abstract class ListTicketNumberRepository{
 
 abstract class ListPlateNumberRepository{
   Future<Either<NetworkErrorModel, ListPlateNumberModel>> getListPlateNumber({required int vehicleTypeId});
+}
+
+abstract class AddWorkOnSiteFormRepository {
+  Future<Either<NetworkErrorModel,  AddWorkOnSiteFormModel>> addWorkOnSiteForm(
+    {
+      required approver,
+      required purposeOnside,
+      required dateFrom,
+      required timeFrom,
+      required dateTo,
+      required timeTo,
+      required taskDescription,
+      required locationOnside,
+      required transportationType,
+      required transportation,
+      required workStatus,
+      required workOnsideVehicleId,
+      required ticketId,
+      listResultFile
+    }
+  );
 }

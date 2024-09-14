@@ -22,3 +22,8 @@ class WorkOnSiteGetListPlateNumberSuccess extends WorkOnSiteState {
   List<ResultListPlateNumber> resultListPlateNumber;
   WorkOnSiteGetListPlateNumberSuccess({required this.resultListPlateNumber});
 }
+
+class AddWorkOnSiteSuccess extends WorkOnSiteState {
+  List<ResultAddWorkOnSiteForm> resultAddWorkOnSiteForm;
+  AddWorkOnSiteSuccess({required this.resultAddWorkOnSiteForm});
+}
