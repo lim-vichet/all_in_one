@@ -78,6 +78,7 @@ dependencies:
   cross_file: ^0.3.4+2
   image_picker:
   image_cropper:
+  another_flushbar: ^1.12.30
 
 
 

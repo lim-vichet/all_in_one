@@ -96,7 +96,8 @@ class AppImages {
   static const String icon_coming_soon = 'assets/icons/coming-soon.png';
   static const String icon_nodata = 'assets/icon/no_data.png';
   static const String info = 'assets/images/image_gif/ic_info.gif';
-  static const String success = 'assets/images/image_gif/ic_success.gif';
+  static const String success = 'assets/images/ic_success.gif';
+  static const String error = 'assets/images/ic_error.gif';
 
   static Widget logoImage({double? width=200,double height = 200}) => Hero(
     tag: 'imagelogo',

@@ -18,10 +18,11 @@ part 'work_on_site_event.dart';
 part 'work_on_site_state.dart';
 
 class WorkOnSiteBloc extends Bloc<WorkOnSiteEvent, WorkOnSiteState> {
-  ListUserRepository listUser = ListUserService();
-  ListVehicleTypeRepository listVehicleType     = ListVehicleTypeService();
-  ListTicketNumberRepository listTicketNumbers  = ListTicketNumberService();
-  ListPlateNumberRepository listPlateNumbers   = ListPlateNumberService();
+  ListUserRepository          listUser           = ListUserService();
+  ListVehicleTypeRepository   listVehicleType    = ListVehicleTypeService();
+  ListTicketNumberRepository  listTicketNumbers  = ListTicketNumberService();
+  ListPlateNumberRepository   listPlateNumbers   = ListPlateNumberService();
+  AddWorkOnSiteFormRepository addWorkOnSite      = AddWorkOnSiteService();
 
   WorkOnSiteBloc() : super(WorkOnSiteInitial()) {
     on<EventGetListUser>((event, emit) async {
@@ -65,6 +66,32 @@ class WorkOnSiteBloc extends Bloc<WorkOnSiteEvent, WorkOnSiteState> {
                   (l)=> WorkOnSiteError(),
                   (r)=> WorkOnSiteGetListPlateNumberSuccess(resultListPlateNumber: r.resultListPlateNumber)
           )
+      );
+    });
+
+
+    on<EventAddWorkOnSiteForm>((event, emit) async {
+      emit(WorkOnSiteLoading());
+      var response = await addWorkOnSite.addWorkOnSiteForm(
+          approver: event.approver,
+          purposeOnside: event.purposeOnside,
+          dateFrom: event.dateFrom,
+          timeFrom: event.timeFrom,
+          dateTo: event.dateTo,
+          timeTo: event.timeTo,
+          taskDescription: event.taskDescription,
+          locationOnside: event.locationOnside,
+          transportationType: event.transportationType,
+          transportation: event.transportation,
+          workStatus: event.workStatus,
+          workOnsideVehicleId: event.workOnsideVehicleId,
+          ticketId: event.ticketId);
+          emit(response.fold(
+                (l) => WorkOnSiteError(),
+                (r) {
+              return AddWorkOnSiteSuccess( resultAddWorkOnSiteForm: r.resultAddWorkOnSiteForm);
+            }
+        )
       );
     });
   }
