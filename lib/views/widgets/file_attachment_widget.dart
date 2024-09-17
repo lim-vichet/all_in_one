@@ -308,30 +308,16 @@ class _FileAttachmentWidgetsState extends State<FileAttachmentWidgets> {
                           right: AppDimension().bodySpace,
                         ),
                         height: 48,
+
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                                color: AppColors().black.withOpacity(0.4),
-                                width: 0.3),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColors().grey.withOpacity(.2),
-                                  blurRadius: 3,
-                                  spreadRadius: 1)
-                            ]),
-                        child: Row(
-                          children: [
-                            Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15.px),
-                                child: SvgPicture.asset("assets/icons/icons_svg/upload_image.svg")
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Pick With Photo'.tr,
-                                style: AppTextStyle().titleS(),
-                              ),
-                            )
-                          ],
+                            color: Colors.lightBlueAccent,
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Pick With Photo'.tr,
+                            style: AppTextStyle().titleS(),
+                          ),
                         ),
                       ),
                     ),
@@ -350,32 +336,19 @@ class _FileAttachmentWidgetsState extends State<FileAttachmentWidgets> {
                           right: AppDimension().bodySpace,
                         ),
                         height: 48,
+
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                                color: AppColors().black.withOpacity(0.4),
-                                width: 0.3),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColors().grey.withOpacity(.2),
-                                  blurRadius: 3,
-                                  spreadRadius: 1)
-                            ]),
-                        child: Row(
-                          children: [
-                            Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15.px),
-                                child: SvgPicture.asset("assets/icons/icons_svg/take_photo.svg")
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Pick With Camera'.tr,
-                                style: AppTextStyle().titleS(),
-                              ),
-                            )
-                          ],
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Pick With Camera'.tr,
+                            style: AppTextStyle().titleS(),
+                          ),
                         ),
                       ),
+
                     ),
                   ),
                 ],
