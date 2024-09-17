@@ -14,6 +14,7 @@ import '../../../../utils/constants/app_images.dart';
 import '../../../../utils/shared_preferences_service.dart';
 import '../../auth/login_screen/login_screen.dart';
 import '../language/language.dart';
+import '../user_profile/user_profile.dart';
 
 
 class DrawerItem extends StatefulWidget {
@@ -24,12 +25,6 @@ class DrawerItem extends StatefulWidget {
 }
 
 class _DrawerItemState extends State<DrawerItem> {
-
-
-
-
-  // function show sound chat
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +55,7 @@ class _DrawerItemState extends State<DrawerItem> {
           /// User Profile
           InkWell(
             onTap: () {
-              // ConfigRouter.pushPage(context, CompanyProfileScreen());
+              ConfigRouter.pushPage(context, UserProfile());
               // Navigator.pushNamed(context, CompanyProfileScreen.routeName);
             },
             child: Container(
