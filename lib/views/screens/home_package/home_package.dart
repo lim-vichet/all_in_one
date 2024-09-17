@@ -10,6 +10,7 @@ import '../../../utils/constants/app_font_styles.dart';
 import 'package:dotted_line/dotted_line.dart';
 
 import '../home_screen/home_screen.dart';
+import 'live_location_map/live_location_map.dart';
 
 class HomePackage extends StatefulWidget {
   const HomePackage({super.key});
@@ -42,7 +43,7 @@ class _HomePackageState extends State<HomePackage> {
                   SizedBox(height: 15.px),
                   InkWell(
                     onTap: () {
-                      ConfigRouter.pushPage(context, const HomeScreen());
+                      ConfigRouter.pushPage(context,  LiveLocationMap());
                     },
                     child: Container(
                       height: 70.px,
@@ -65,78 +66,11 @@ class _HomePackageState extends State<HomePackage> {
                           Expanded(
                             flex: 8,
                             child: Text(
-                              "Image Picker".tr,
+                              "Live Location Map".tr,
                               style: AppTextStyle().textL(),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15.px),
-                  InkWell(
-                    onTap: () {
-                      ConfigRouter.pushPage(context, const HomeScreen());
-                    },
-                    child: Container(
-                      height: 70.px,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xffF7F7F7),
-                          boxShadow: [
-                            BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                          ]
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 2,
-                              child: Icon(
-                                Icons.image_search,
-                                color: AppColors().primaryRed,
-                              )),
-                          Expanded(
-                            flex: 8,
-                            child: Text(
-                              "Image Picker".tr,
-                              style: AppTextStyle().textL(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15.px),
-                  InkWell(
-                    onTap: () {
-                      ConfigRouter.pushPage(context, const HomeScreen());
-                    },
-                    child: Container(
-                      height: 70.px,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xffF7F7F7),
-                          boxShadow: [
-                            BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                          ]
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 2,
-                              child: Icon(
-                                Icons.image_search,
-                                color: AppColors().primaryRed,
-                              )),
-                          Expanded(
-                            flex: 8,
-                            child: Text(
-                              "Image Picker".tr,
-                              style: AppTextStyle().textL(),
-                            ),
-                          ),
+
                         ],
                       ),
                     ),
