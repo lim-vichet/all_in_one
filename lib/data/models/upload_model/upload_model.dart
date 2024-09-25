@@ -28,19 +28,19 @@ class UploadModel {
   };
 
 
-   static listMapFile(listResultFile) {
+  static listMapFile(listResultFile) {
     Map mapFile = {};
 
-    for( int i = 0 ; i < listResultFile.length ; i++ ) {
-      mapFile["$i"] = {
-        "fileName":listResultFile[i].fileName,
-        "pathFile":listResultFile[i].pathFile,
-        "type" :listResultFile[i].type,
-        "name" :listResultFile[i].name,
-        "extension":listResultFile[i].extension,
-        "path":listResultFile[i].path
-      };
-    }
+    // for( int i = 0 ; i < listResultFile.length ; i++ ) {
+    //   mapFile["$i"] = {
+    //     "fileName":listResultFile[i].fileName,
+    //     "pathFile":listResultFile[i].pathFile,
+    //     "type" :listResultFile[i].type,
+    //     "name" :listResultFile[i].name,
+    //     "extension":listResultFile[i].extension,
+    //     "path":listResultFile[i].path
+    //   };
+    // }
     return mapFile;
   }
 

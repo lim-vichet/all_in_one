@@ -83,7 +83,7 @@ class WorkOnSiteBloc extends Bloc<WorkOnSiteEvent, WorkOnSiteState> {
           locationOnside: event.locationOnside,
           transportationType: event.transportationType,
           transportation: event.transportation,
-          workStatus: event.workStatus,
+          workStatus:  "new",
           workOnsideVehicleId: event.workOnsideVehicleId,
           ticketId: event.ticketId);
           emit(response.fold(
