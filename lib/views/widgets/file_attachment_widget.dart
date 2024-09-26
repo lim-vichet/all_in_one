@@ -115,11 +115,7 @@ class _FileAttachmentWidgetsState extends State<FileAttachmentWidgets> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SvgPicture.asset(
-                                    "assets/icons/icons_svg/ic_upload_files.svg",
-                                    width: 25.px,
-                                    height: 25.px,
-                                  ),
+                                  const Icon(Icons.cloud_upload, color: Colors.lightBlueAccent,),
                                   Container(
                                     padding: EdgeInsets.only(
                                         top: 5.px,

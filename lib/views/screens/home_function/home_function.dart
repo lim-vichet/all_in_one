@@ -11,6 +11,7 @@ import '../../../utils/constants/app_font_styles.dart';
 import '../home_screen/home_screen.dart';
 import 'attendance/attendance.dart';
 import 'form/list_form.dart';
+import 'my_request/list_request/list_request.dart';
 
 class HomeFunction extends StatefulWidget {
   const HomeFunction({super.key});
@@ -109,6 +110,41 @@ class _HomeFunctionState extends State<HomeFunction> {
                       ),
                     ),
 
+
+                    SizedBox(height: 15.px),
+                    InkWell (
+                      onTap: () {
+                        ConfigRouter.pushPage(context, const ListRequestScreen());
+                      },
+                      child: Container(
+                        height: 70.px,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: Icon(
+                                  Icons.format_list_numbered_rtl,
+                                  color: AppColors().yellow,
+                                )),
+                            Expanded(
+                              flex: 8,
+                              child: Text(
+                                "List Request".tr,
+                                style: AppTextStyle().textL(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
 
                     SizedBox(height: 15.px),
                     InkWell (
