@@ -28,6 +28,7 @@ class _DrawerItemState extends State<DrawerItem> {
 
   @override
   Widget build(BuildContext context) {
+    print("SharedPreferencesService=============${SharedPreferencesService.instance!.getUserRole}");
     return Drawer(
       backgroundColor: AppColors().white,
 
@@ -214,7 +215,7 @@ class _DrawerItemState extends State<DrawerItem> {
               ),
             ),
           ),
-          SharedPreferencesService.instance!.getUserRole != ""?
+          SharedPreferencesService.instance!.getUserRole != null?
           /// Logout
           InkWell(
             onTap: () {

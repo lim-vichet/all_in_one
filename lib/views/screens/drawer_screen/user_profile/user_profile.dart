@@ -387,7 +387,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Container(
                           width: double.infinity,
                           height: 100,
-                          // color: Colors.green,
+                          color: Colors.green,
                           child: Center(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(150),
@@ -396,9 +396,7 @@ class _UserProfileState extends State<UserProfile> {
                                 height: 100,
                                 color: Colors.yellow,
                                 child:
-
                                 // AppImages.networkImage("${BaseService().baseUrlHost}${userInformationData!.profile}",fit: BoxFit.cover),
-
                                 Image.network("https://funmauj.b-cdn.net/test/367611.jpg", fit: BoxFit.cover,),
                               ),
                             ),
