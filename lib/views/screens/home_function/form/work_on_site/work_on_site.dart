@@ -675,6 +675,7 @@ import '../../../../../utils/constants/url_path.dart';
 import '../../../../../utils/global_use.dart';
 import '../../../../widgets/file_attachment_widget.dart';
 import '../../../../widgets/text_field.dart';
+import '../../my_request/list_request/list_request.dart';
 
 class WorkOnSiteForm extends StatefulWidget {
   const WorkOnSiteForm({super.key});
@@ -783,7 +784,8 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
 
                 AppSnackBar.showBottomSnackBarSuccess(context: context,message: messageSuccess);
                 await Future.delayed(const Duration(seconds: 3),(){
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  ConfigRouter.pushPage(context, ListRequestScreen());
                 });
 
               }

@@ -22,7 +22,7 @@ class ListMyRequestModel {
 
   factory ListMyRequestModel.fromJson(Map<String, dynamic> json) => ListMyRequestModel(
     status: json["status"],
-    total: json["total"],
+    total: json["total"]??0,
     resultListRequest: List<ResultListRequest>.from(json["result"].map((x) => ResultListRequest.fromJson(x))),
   );
 
@@ -39,7 +39,7 @@ class ResultListRequest {
   DateTime createDate;
   String fileName;
   int eRequestFormId;
-  int requestBy;
+  dynamic requestBy;
   dynamic eRequestStatus;
   dynamic comment;
   dynamic actionBy;
@@ -49,7 +49,7 @@ class ResultListRequest {
   bool eRequestTableStatus;
   bool eRequestTableDelete;
   dynamic erdid;
-  String purpose;
+  dynamic purpose;
   dynamic notificationId;
 
   ResultListRequest({

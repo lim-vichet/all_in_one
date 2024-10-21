@@ -1,13 +1,13 @@
 
-
+import 'package:all_in_one/views/screens/home_function/my_request/list_request/widgets/list_request_approve.dart';
+import 'package:all_in_one/views/screens/home_function/my_request/list_request/widgets/list_request_new.dart';
+import 'package:all_in_one/views/screens/home_function/my_request/list_request/widgets/list_request_reject.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../../../../routes/config_router.dart';
+import '../../../../../data/models/my_request_model/list_request_model/list_request_model.dart';
 import '../../../../../utils/constants/app_colors.dart';
-import '../../../../../utils/constants/app_font_styles.dart';
-import '../../attendance/attendance.dart';
+import '../../../../../utils/global_use.dart';
+
 
 class ListRequestScreen extends StatefulWidget {
   const ListRequestScreen({Key? key}) : super(key: key);
@@ -16,7 +16,21 @@ class ListRequestScreen extends StatefulWidget {
   State<ListRequestScreen> createState() => _ListRequestScreenState();
 }
 
-class _ListRequestScreenState extends State<ListRequestScreen> {
+class _ListRequestScreenState extends State<ListRequestScreen> with SingleTickerProviderStateMixin{
+
+
+  TextEditingController searchController = TextEditingController();
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  int page = 1;
+  String status = '';
+  List<ResultListRequest> resultListRequest = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,59 +38,86 @@ class _ListRequestScreenState extends State<ListRequestScreen> {
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
           automaticallyImplyLeading: false,
-          title: const Center(child: Text("List Request", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
+          title: const Center(child: Text("List Request", style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold),)),
+          leading: const BackButton(
+            color: Colors.white,
+          ),
         ),
-        body: Stack(
-          alignment: Alignment.center,
+        body: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    SizedBox(height: 15.px),
-                    InkWell(
-                      onTap: () {
-                        ConfigRouter.pushPage(context, const AttendanceScreen());
-                      },
-                      child: Container(
-                        height: 70.px,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: Icon(
-                                  Icons.playlist_add_check_circle,
-                                  color: AppColors().green,
-                                )),
-                            Expanded(
-                              flex: 8,
-                              child: Text(
-                                "Attendance".tr,
-                                style: AppTextStyle().textL(),
-                              ),
-                            ),
-                          ],
+            Stack(
+              children: [
+                Container(
+                  height: heightTabBar,
+                  alignment: Alignment.centerLeft,
+                  // color: Colors.red,
+                  margin: EdgeInsets.zero,
+                  child: TabBar(
+                    controller: _tabController,
+                    labelColor: Colors.black,
+                    padding: EdgeInsets.zero,
+                    isScrollable: true,
+                    indicatorColor: Colors.red,
+                    unselectedLabelColor: AppColors().black,
+                    unselectedLabelStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                    labelStyle: const TextStyle(
+                      fontSize: 16,
+                    ),
+                    indicator: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: AppColors().primaryRed, width: 2))),
+                    labelPadding: EdgeInsets.zero,
+                    tabAlignment: TabAlignment.start,
+                    tabs: [
+                      SizedBox(
+                        width: 130,
+                        child: Tab(
+                          text: "${"Pending".tr} "
+                          // "(${dataCountEApproval!.resultNew})"
+                          ,
+                          height: 50,
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        width: 130,
+                        child: Tab(
+                            text:"${"Approved".tr} "
+                          // "(${dataCountEApproval!.approve})"
+                        )
+                        ,
+                      ),
 
-
+                      SizedBox(
+                        width: 130,
+                        child: Tab(
+                            text:"${"Rejected".tr} "
+                          // "(${dataCountEApproval!.reject})"
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(
+                color: AppColors().bgColorApp,
+                child: TabBarView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: _tabController,
+                  children:  const [
+                    ListRequestNew(),
+                    ListRequestApprove(),
+                    ListRequestReject(),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         )
     );

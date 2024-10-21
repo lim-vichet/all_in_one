@@ -7,6 +7,7 @@ import '../../../models/my_request_model/list_request_model/list_request_model.d
 abstract class ListRequestRepository{
   Future<Either<NetworkErrorModel, ListMyRequestModel>>getListMyRequest({
     required int page,
-    required String status
+    required String status,
+    required String search,
   });
 }
