@@ -41,6 +41,7 @@ class UploadModel {
     //     "path":listResultFile[i].path
     //   };
     // }
+
     return mapFile;
   }
 
