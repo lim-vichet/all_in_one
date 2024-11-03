@@ -19,7 +19,7 @@ class AllFormDetailBloc extends Bloc<AllFormDetailEvent, AllFormDetailState> {
       var res = await _repositoryWorkOnSiteDetail.getDataWorkOnSiteDetail(id: event.id);
       emit(res.fold(
           (l) => AllFormDetailError(),
-          (r) => AllFormDetailSuccess()
+          (r) => FormWorkOnSiteDetailSuccess(resultFormWorkOnSiteDetail: r.resultFormWorkOnSiteDetail)
       ));
     });
   }

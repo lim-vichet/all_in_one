@@ -2,7 +2,6 @@
 //
 //     final formWorkOnSiteDetailModel = formWorkOnSiteDetailModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 FormWorkOnSiteDetailModel formWorkOnSiteDetailModelFromJson(String str) => FormWorkOnSiteDetailModel.fromJson(json.decode(str));
@@ -21,8 +20,8 @@ class FormWorkOnSiteDetailModel {
   });
 
   factory FormWorkOnSiteDetailModel.fromJson(Map<String, dynamic> json) => FormWorkOnSiteDetailModel(
-    status: json["status"],
-    resultFormWorkOnSiteDetail: List<ResultFormWorkOnSiteDetail>.from(json["result"].map((x) => ResultFormWorkOnSiteDetail.fromJson(x))),
+    status: json["status"]?? 0,
+    resultFormWorkOnSiteDetail: json["result"] == null ? []: List<ResultFormWorkOnSiteDetail>.from(json["result"].map((x) => ResultFormWorkOnSiteDetail.fromJson(x))),
     btn: json["btn"],
   );
 
@@ -44,10 +43,9 @@ class ResultFormWorkOnSiteDetail {
   String deptNameKh;
   String positionEn;
   String positionKh;
-  DateTime requestDate;
+  dynamic requestDate;
   String requestType;
   String tableName;
-  int tableId;
   int formTableRowId;
   List<ActionDetail> actionDetail;
   Tabledetail tabledetail;
@@ -66,28 +64,26 @@ class ResultFormWorkOnSiteDetail {
     required this.requestDate,
     required this.requestType,
     required this.tableName,
-    required this.tableId,
     required this.formTableRowId,
     required this.actionDetail,
     required this.tabledetail,
   });
 
   factory ResultFormWorkOnSiteDetail.fromJson(Map<String, dynamic> json) => ResultFormWorkOnSiteDetail(
-    id: json["id"],
-    requestById: json["request_by_id"],
-    requestByNameEn: json["request_by_name_en"],
-    requestByNameKh: json["request_by_name_kh"],
-    idNumber: json["id_number"],
-    gender: json["gender"],
-    deptNameEn: json["dept_name_en"],
-    deptNameKh: json["dept_name_kh"],
-    positionEn: json["position_en"],
-    positionKh: json["position_kh"],
-    requestDate: DateTime.parse(json["request_date"]),
-    requestType: json["request_type"],
-    tableName: json["table_name"],
-    tableId: json["table_id"],
-    formTableRowId: json["form_table_row_id"],
+    id: json["id"]?? 0,
+    requestById: json["request_by_id"]?? 0,
+    requestByNameEn: json["request_by_name_en"]?? "",
+    requestByNameKh: json["request_by_name_kh"]?? "",
+    idNumber: json["id_number"]?? "",
+    gender: json["gender"]?? "",
+    deptNameEn: json["dept_name_en"]?? "",
+    deptNameKh: json["dept_name_kh"]?? "",
+    positionEn: json["position_en"]?? "",
+    positionKh: json["position_kh"]?? "",
+    requestDate: DateTime.parse(json["request_date"]?? ""),
+    requestType: json["request_type"]?? "",
+    tableName: json["table_name"]?? "",
+    formTableRowId: json["form_table_row_id"]?? 0,
     actionDetail: List<ActionDetail>.from(json["actionDetail"].map((x) => ActionDetail.fromJson(x))),
     tabledetail: Tabledetail.fromJson(json["tabledetail"]),
   );
@@ -106,7 +102,6 @@ class ResultFormWorkOnSiteDetail {
     "request_date": requestDate.toIso8601String(),
     "request_type": requestType,
     "table_name": tableName,
-    "table_id": tableId,
     "form_table_row_id": formTableRowId,
     "actionDetail": List<dynamic>.from(actionDetail.map((x) => x.toJson())),
     "tabledetail": tabledetail.toJson(),
@@ -141,17 +136,17 @@ class ActionDetail {
   });
 
   factory ActionDetail.fromJson(Map<String, dynamic> json) => ActionDetail(
-    eRequestId: json["e_request_id"],
-    actionById: json["action_by_id"],
-    actionByNameEn: json["action_by_name_en"],
-    actionByNameKh: json["action_by_name_kh"],
-    statusDate: json["status_date"],
-    eRequeststatusId: json["e_requeststatus_id"],
-    requestType: json["request_type"],
-    eRequestStatus: json["e_request_status"],
-    btnApprove: json["btnApprove"],
-    btnReject: json["btnReject"],
-    btnWait: json["btnWait"],
+    eRequestId: json["e_request_id"]?? "",
+    actionById: json["action_by_id"]?? "",
+    actionByNameEn: json["action_by_name_en"]?? "",
+    actionByNameKh: json["action_by_name_kh"]?? "",
+    statusDate:json["status_date"] == null ? '' : DateTime.parse(json["status_date"]?? ""),
+    eRequeststatusId: json["e_requeststatus_id"]?? "",
+    requestType: json["request_type"]?? "",
+    eRequestStatus: json["e_request_status"]?? "",
+    btnApprove: json["btnApprove"]?? true,
+    btnReject: json["btnReject"]?? true,
+    btnWait: json["btnWait"]?? true,
   );
 
   Map<String, dynamic> toJson() => {
@@ -159,7 +154,7 @@ class ActionDetail {
     "action_by_id": actionById,
     "action_by_name_en": actionByNameEn,
     "action_by_name_kh": actionByNameKh,
-    "status_date": statusDate,
+    "status_date": statusDate.toIso8601String(),
     "e_requeststatus_id": eRequeststatusId,
     "request_type": requestType,
     "e_request_status": eRequestStatus,
@@ -171,7 +166,7 @@ class ActionDetail {
 
 class Tabledetail {
   List<Arraytable1> arraytable1;
-  List<dynamic> file;
+  List<FileElement> file;
 
   Tabledetail({
     required this.arraytable1,
@@ -179,8 +174,8 @@ class Tabledetail {
   });
 
   factory Tabledetail.fromJson(Map<String, dynamic> json) => Tabledetail(
-    arraytable1: List<Arraytable1>.from(json["arraytable1"].map((x) => Arraytable1.fromJson(x))),
-    file: List<dynamic>.from(json["file"].map((x) => x)),
+    arraytable1:json["arraytable1"] == null ? []: List<Arraytable1>.from(json["arraytable1"].map((x) => Arraytable1.fromJson(x))),
+    file: List<FileElement>.from(json["file"].map((x) => FileElement.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -207,19 +202,19 @@ class Arraytable1 {
   String transportationType;
   String transportationBy;
   String taskDescription;
-  DateTime fromDate;
-  DateTime toDate;
-  String durationPerformed;
+  dynamic fromDate;
+  dynamic toDate;
+  dynamic durationPerformed;
   dynamic remark;
-  DateTime createDate;
+  dynamic createDate;
   bool status;
   dynamic maUploadedFiles;
-  dynamic workOnsideVehicleTypeDetailId;
+  int workOnsideVehicleTypeDetailId;
   int ticketId;
-  dynamic workOnsideVehicleType;
-  dynamic workOnsideVehiclPlateNumber;
-  String ticketName;
-  String ticketNameKh;
+  String workOnsideVehicleType;
+  String workOnsideVehiclPlateNumber;
+  dynamic ticketName;
+  dynamic ticketNameKh;
 
   Arraytable1({
     required this.approverBy,
@@ -255,36 +250,36 @@ class Arraytable1 {
   });
 
   factory Arraytable1.fromJson(Map<String, dynamic> json) => Arraytable1(
-    approverBy: json["approver_by"],
-    prepareBy: json["prepare_by"],
-    idNumber: json["id_number"],
-    onsiteNameEn: json["onsite_name_en"],
-    onsiteNameKh: json["onsite_name_kh"],
-    onsitePosition: json["onsite_position"],
-    onsitePositionKh: json["onsite_position_kh"],
-    onsiteDeptFullname: json["onsite_dept_fullname"],
-    onsiteDeptFullnameKh: json["onsite_dept_fullname_kh"],
-    onsiteDeptShortname: json["onsite_dept_shortname"],
-    id: json["id"],
-    eRequestWorkOnsideId: json["e_request_work_onside_id"],
-    purpose: json["purpose"],
-    location: json["location"],
-    transportationType: json["transportation_type"],
-    transportationBy: json["transportation_by"],
-    taskDescription: json["task_description"],
-    fromDate: DateTime.parse(json["from_date"]),
-    toDate: DateTime.parse(json["to_date"]),
-    durationPerformed: json["duration_performed"],
-    remark: json["remark"],
-    createDate: DateTime.parse(json["create_date"]),
-    status: json["status"],
-    maUploadedFiles: json["ma_uploaded_files"],
-    workOnsideVehicleTypeDetailId: json["work_onside_vehicle_type_detail_id"],
-    ticketId: json["ticket_id"],
-    workOnsideVehicleType: json["work_onside_vehicle_type"],
-    workOnsideVehiclPlateNumber: json["work_onside_vehicl_plate_number"],
-    ticketName: json["ticket_name"],
-    ticketNameKh: json["ticket_name_kh"],
+    approverBy: json["approver_by"]?? 0,
+    prepareBy: json["prepare_by"]?? 0,
+    idNumber: json["id_number"]?? "",
+    onsiteNameEn: json["onsite_name_en"]?? "",
+    onsiteNameKh: json["onsite_name_kh"]?? "",
+    onsitePosition: json["onsite_position"]?? "",
+    onsitePositionKh: json["onsite_position_kh"]?? "",
+    onsiteDeptFullname: json["onsite_dept_fullname"]?? "",
+    onsiteDeptFullnameKh: json["onsite_dept_fullname_kh"]?? "",
+    onsiteDeptShortname: json["onsite_dept_shortname"]?? "",
+    id: json["id"]?? 0,
+    eRequestWorkOnsideId: json["e_request_work_onside_id"]?? 0,
+    purpose: json["purpose"]?? "",
+    location: json["location"]?? "",
+    transportationType: json["transportation_type"]?? "",
+    transportationBy: json["transportation_by"]?? "",
+    taskDescription: json["task_description"]?? "",
+    fromDate: DateTime.parse(json["from_date"]?? ""),
+    toDate: DateTime.parse(json["to_date"]?? ""),
+    durationPerformed: json["duration_performed"]?? "",
+    remark: json["remark"]?? "",
+    createDate: DateTime.parse(json["create_date"]?? ""),
+    status: json["status"]?? true,
+    maUploadedFiles: json["ma_uploaded_files"]?? "",
+    workOnsideVehicleTypeDetailId: json["work_onside_vehicle_type_detail_id"]?? 0,
+    ticketId: json["ticket_id"]?? 0,
+    workOnsideVehicleType: json["work_onside_vehicle_type"]?? "",
+    workOnsideVehiclPlateNumber: json["work_onside_vehicl_plate_number"]?? "",
+    ticketName: json["ticket_name"]?? "",
+    ticketNameKh: json["ticket_name_kh"]?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -319,4 +314,51 @@ class Arraytable1 {
     "ticket_name": ticketName,
     "ticket_name_kh": ticketNameKh,
   };
+
 }
+
+class FileElement {
+  int id;
+  String filePath;
+  dynamic createDate;
+  int createBy;
+  bool isDeleted;
+  bool status;
+  String fileName;
+  String fileExtension;
+
+  FileElement({
+    required this.id,
+    required this.filePath,
+    required this.createDate,
+    required this.createBy,
+    required this.isDeleted,
+    required this.status,
+    required this.fileName,
+    required this.fileExtension,
+  });
+
+  factory FileElement.fromJson(Map<String, dynamic> json) => FileElement(
+    id: json["id"]?? 0,
+    filePath: json["file_path"]?? "",
+    createDate: DateTime.parse(json["create_date"]?? ""),
+    createBy: json["create_by"]?? 0,
+    isDeleted: json["is_deleted"]?? false,
+    status: json["status"]?? true,
+    fileName: json["file_name"]?? "",
+    fileExtension: json["file_extension"]?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "file_path": filePath,
+    "create_date": createDate.toIso8601String(),
+    "create_by": createBy,
+    "is_deleted": isDeleted,
+    "status": status,
+    "file_name": fileName,
+    "file_extension": fileExtension,
+  };
+}
+
+

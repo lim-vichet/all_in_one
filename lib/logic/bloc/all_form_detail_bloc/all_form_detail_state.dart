@@ -9,10 +9,10 @@ class AllFormDetailError   extends AllFormDetailState {}
 class AllFormDetailSuccess extends AllFormDetailState {}
 
 class FormWorkOnSiteDetailSuccess extends AllFormDetailState {
-  int id;
+
   List<ResultFormWorkOnSiteDetail> resultFormWorkOnSiteDetail;
   FormWorkOnSiteDetailSuccess({
-    required this.id,
+
     required this.resultFormWorkOnSiteDetail
 });
 }

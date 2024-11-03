@@ -1,10 +1,20 @@
+import 'dart:convert';
+
+import 'package:all_in_one/views/screens/home_function/my_request/request_detail/widgets/item_work_on_site_detail.dart';
+import 'package:all_in_one/views/widgets/error_screen.dart';
+import 'package:all_in_one/views/widgets/loading/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../../../data/models/all_form_detail_model/work_on_site_detail_model.dart';
+import '../../../../../logic/bloc/all_form_detail_bloc/all_form_detail_bloc.dart';
 import '../../../../../routes/config_router.dart';
 import '../../../../../utils/constants/app_colors.dart';
+import '../../../../../utils/constants/app_dimensions.dart';
 import '../../../../../utils/constants/app_font_styles.dart';
+import '../../../../../utils/global_use.dart';
 import '../../form/work_on_site/work_on_site.dart';
 
 import 'package:dotted_line/dotted_line.dart';
@@ -17,135 +27,69 @@ class RequestDetailScreen extends StatefulWidget {
 }
 
 class _RequestDetailScreenState extends State<RequestDetailScreen> {
+  int id = 11682;
+  List<ResultFormWorkOnSiteDetail> resultFormWorkOnSiteDetail = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors().bgColorApp,
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent,
-          // automaticallyImplyLeading: false,
-          title: Container(
-              padding: EdgeInsets.only(right: 50),
-              child: const Center(child: Text("My Request Detail Detail", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),))),
-          leading: const BackButton(
-            color: Colors.white,
+    return BlocProvider(
+      create: (context) => AllFormDetailBloc()..add(EventGetFormWorkOnSiteDetail(id: 11682)),
+      child: Scaffold(
+          backgroundColor: AppColors().bgColorApp,
+          appBar: AppBar(
+            backgroundColor: Colors.lightBlueAccent,
+            // automaticallyImplyLeading: false,
+            title: Container(
+                padding: EdgeInsets.only(right: 50),
+                child: const Center(
+                    child: Text("My Request Detail Detail",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ))),
+            leading: const BackButton(
+              color: Colors.white,
+            ),
           ),
-        ),
-        body: Stack(
-          alignment: Alignment.center,
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    SizedBox(height: 15.px),
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      // height: 70.px,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xffF7F7F7),
-                          boxShadow: [
-                            BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                          ]
+          body: BlocConsumer<AllFormDetailBloc, AllFormDetailState>(
+            listener: (context, state) {
+            },
+            builder: (context, state) {
+
+              if(state is AllFormDetailLoading){
+                return LoadingScreen();
+              }
+              else if(state is AllFormDetailError){
+                return ErrorScreen();
+              }
+              else if(state is  FormWorkOnSiteDetailSuccess){
+                resultFormWorkOnSiteDetail = state.resultFormWorkOnSiteDetail;
+                print("resultFormWorkOnSiteDetail==${jsonEncode(resultFormWorkOnSiteDetail)}");
+
+              }
+              return SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                        left: AppDimension().smallSpace,
+                        right: AppDimension().smallSpace,
+                        top: AppDimension().smallSpace,
                       ),
                       child: Column(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  flex: 2,
-                                  child: Icon(
-                                    Icons.schedule,
-                                    color: AppColors().green,
-                                  )),
-                              Expanded(
-                                flex: 8,
-                                child: Text(
-                                  "Work-On-Site".tr,
-                                  style: AppTextStyle().textL(),
-                                ),
-                              ),
-
-                            ],
-                          ),
-                          SizedBox(height: 10,),
-                          DottedLine(),
-                          SizedBox(height: 10,),
-                          Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex:4,
-                                    child: Text("Hello")),
-                                Expanded(
-                                  flex: 1,
-                                    child: Text(":")),
-                                Expanded(
-                                    flex: 5,
-                                    child: Text("Hello")),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex:4,
-                                    child: Text("Hello")),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text(":")),
-                                Expanded(
-                                    flex: 5,
-                                    child: Text("Hello")),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex:4,
-                                    child: Text("Hello")),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text(":")),
-                                Expanded(
-                                    flex: 5,
-                                    child: Text("Hello")),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex:4,
-                                    child: Text("Hello")),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text(":")),
-                                Expanded(
-                                    flex: 5,
-                                    child: Text("Hello")),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
+                          ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: resultFormWorkOnSiteDetail.length,
+                          itemBuilder: (context, index) {
+                            return Text("${resultFormWorkOnSiteDetail}");
+                            // return ItemWorkOnSiteDetail(dataWorkOnSiteDetail: resultFormWorkOnSiteDetail[index]);
+                            }
+                        )],
+                      )
+                  )
+              );
+          }
         )
+      )
     );
   }
 }
