@@ -47,8 +47,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
         // Navigator.pushNamedAndRemoveUntil(context, SignUpScreen.routeName, (route) => false);
         SharedPreferencesService.instance!.getUserRole == ""?
-        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false):
-        Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false)
+        : Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (route) => false);
         // Navigator.pushNamedAndRemoveUntil(context, MyHomePage.routeName, (route) => false);
 
 
