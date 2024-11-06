@@ -96,7 +96,10 @@ class _ListRequestNewState extends State<ListRequestNew> {
                         onTap: (){
 
                           print("test============${resultListRequest[index].eRequestFormId}");
-                          ConfigRouter.pushPage(context, RequestDetailScreen());
+                          print("test============${resultListRequest[index].id}");
+                          ConfigRouter.pushPage(context, RequestDetailScreen(
+                            id: resultListRequest[index].id
+                          ));
 
                           // if(resultListRequest[index].eRequestFormId == 29){
                           //

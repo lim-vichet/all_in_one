@@ -20,7 +20,10 @@ import '../../form/work_on_site/work_on_site.dart';
 import 'package:dotted_line/dotted_line.dart';
 
 class RequestDetailScreen extends StatefulWidget {
-  const RequestDetailScreen({Key? key}) : super(key: key);
+  int id =1;
+  RequestDetailScreen({Key? key,
+    required  this.id
+  }) : super(key: key);
 
   @override
   State<RequestDetailScreen> createState() => _RequestDetailScreenState();
@@ -32,7 +35,7 @@ class _RequestDetailScreenState extends State<RequestDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AllFormDetailBloc()..add(EventGetFormWorkOnSiteDetail(id: 11682)),
+      create: (context) => AllFormDetailBloc()..add(EventGetFormWorkOnSiteDetail(id: widget.id)),
       child: Scaffold(
           backgroundColor: AppColors().bgColorApp,
           appBar: AppBar(
@@ -49,46 +52,52 @@ class _RequestDetailScreenState extends State<RequestDetailScreen> {
               color: Colors.white,
             ),
           ),
-          body: BlocConsumer<AllFormDetailBloc, AllFormDetailState>(
-            listener: (context, state) {
-            },
-            builder: (context, state) {
+          body: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: BlocConsumer<AllFormDetailBloc, AllFormDetailState>(
+              listener: (context, state) {
+              },
+              builder: (context, state) {
 
-              if(state is AllFormDetailLoading){
-                return LoadingScreen();
-              }
-              else if(state is AllFormDetailError){
-                return ErrorScreen();
-              }
-              else if(state is  FormWorkOnSiteDetailSuccess){
-                resultFormWorkOnSiteDetail = state.resultFormWorkOnSiteDetail;
-                print("resultFormWorkOnSiteDetail==${jsonEncode(resultFormWorkOnSiteDetail)}");
-
-              }
-              return SingleChildScrollView(
-                  child: Container(
-                      padding: EdgeInsets.only(
-                        left: AppDimension().smallSpace,
-                        right: AppDimension().smallSpace,
-                        top: AppDimension().smallSpace,
-                      ),
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: resultFormWorkOnSiteDetail.length,
-                          itemBuilder: (context, index) {
-                            return Text("${resultFormWorkOnSiteDetail}");
-                            // return ItemWorkOnSiteDetail(dataWorkOnSiteDetail: resultFormWorkOnSiteDetail[index]);
-                            }
-                        )],
+                if(state is AllFormDetailLoading){
+                  return LoadingScreen();
+                }
+                else if(state is AllFormDetailError){
+                  return ErrorScreen();
+                }
+                else if(state is  FormWorkOnSiteDetailSuccess){
+                  resultFormWorkOnSiteDetail = state.resultFormWorkOnSiteDetail;
+                  // print("resultFormWorkOnSiteDetail==${jsonEncode(resultFormWorkOnSiteDetail)}");
+                  return SingleChildScrollView(
+                      child: Container(
+                          // width: double.infinity,
+                          // height: 700,
+                          // padding: EdgeInsets.only(
+                          //   left: AppDimension().smallSpace,
+                          //   right: AppDimension().smallSpace,
+                          //   top: AppDimension().smallSpace,
+                          // ),
+                          child: Column(
+                            children: [
+                              ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: resultFormWorkOnSiteDetail.length,
+                                  itemBuilder: (context, index) {
+                                    // return Text("${resultFormWorkOnSiteDetail}");
+                                    return ItemWorkOnSiteDetail(dataWorkOnSiteDetail: resultFormWorkOnSiteDetail[index]);
+                                  }
+                              )],
+                          )
                       )
-                  )
-              );
-          }
-        )
+                  );
+                }
+                return Container();
+            }
+                    ),
+          )
       )
     );
   }

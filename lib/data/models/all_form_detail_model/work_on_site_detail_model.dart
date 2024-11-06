@@ -80,7 +80,7 @@ class ResultFormWorkOnSiteDetail {
     deptNameKh: json["dept_name_kh"]?? "",
     positionEn: json["position_en"]?? "",
     positionKh: json["position_kh"]?? "",
-    requestDate: DateTime.parse(json["request_date"]?? ""),
+    requestDate:json["request_date"]?? "",
     requestType: json["request_type"]?? "",
     tableName: json["table_name"]?? "",
     formTableRowId: json["form_table_row_id"]?? 0,
@@ -99,7 +99,7 @@ class ResultFormWorkOnSiteDetail {
     "dept_name_kh": deptNameKh,
     "position_en": positionEn,
     "position_kh": positionKh,
-    "request_date": requestDate.toIso8601String(),
+    "request_date": requestDate,
     "request_type": requestType,
     "table_name": tableName,
     "form_table_row_id": formTableRowId,
@@ -140,7 +140,7 @@ class ActionDetail {
     actionById: json["action_by_id"]?? "",
     actionByNameEn: json["action_by_name_en"]?? "",
     actionByNameKh: json["action_by_name_kh"]?? "",
-    statusDate:json["status_date"] == null ? '' : DateTime.parse(json["status_date"]?? ""),
+    statusDate:json["status_date"]?? "",
     eRequeststatusId: json["e_requeststatus_id"]?? "",
     requestType: json["request_type"]?? "",
     eRequestStatus: json["e_request_status"]?? "",
@@ -154,7 +154,7 @@ class ActionDetail {
     "action_by_id": actionById,
     "action_by_name_en": actionByNameEn,
     "action_by_name_kh": actionByNameKh,
-    "status_date": statusDate.toIso8601String(),
+    "status_date": statusDate,
     "e_requeststatus_id": eRequeststatusId,
     "request_type": requestType,
     "e_request_status": eRequestStatus,
@@ -210,7 +210,7 @@ class Arraytable1 {
   bool status;
   dynamic maUploadedFiles;
   int workOnsideVehicleTypeDetailId;
-  int ticketId;
+  dynamic ticketId;
   String workOnsideVehicleType;
   String workOnsideVehiclPlateNumber;
   dynamic ticketName;
@@ -275,7 +275,7 @@ class Arraytable1 {
     status: json["status"]?? true,
     maUploadedFiles: json["ma_uploaded_files"]?? "",
     workOnsideVehicleTypeDetailId: json["work_onside_vehicle_type_detail_id"]?? 0,
-    ticketId: json["ticket_id"]?? 0,
+    ticketId: json["ticket_id"]?? "",
     workOnsideVehicleType: json["work_onside_vehicle_type"]?? "",
     workOnsideVehiclPlateNumber: json["work_onside_vehicl_plate_number"]?? "",
     ticketName: json["ticket_name"]?? "",
