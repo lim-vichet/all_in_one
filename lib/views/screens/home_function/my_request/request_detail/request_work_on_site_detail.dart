@@ -71,13 +71,6 @@ class _RequestDetailScreenState extends State<RequestDetailScreen> {
                   // print("resultFormWorkOnSiteDetail==${jsonEncode(resultFormWorkOnSiteDetail)}");
                   return SingleChildScrollView(
                       child: Container(
-                          // width: double.infinity,
-                          // height: 700,
-                          // padding: EdgeInsets.only(
-                          //   left: AppDimension().smallSpace,
-                          //   right: AppDimension().smallSpace,
-                          //   top: AppDimension().smallSpace,
-                          // ),
                           child: Column(
                             children: [
                               ListView.builder(

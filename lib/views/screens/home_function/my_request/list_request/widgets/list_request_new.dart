@@ -94,17 +94,9 @@ class _ListRequestNewState extends State<ListRequestNew> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: (){
-
-                          print("test============${resultListRequest[index].eRequestFormId}");
-                          print("test============${resultListRequest[index].id}");
                           ConfigRouter.pushPage(context, RequestDetailScreen(
                             id: resultListRequest[index].id
                           ));
-
-                          // if(resultListRequest[index].eRequestFormId == 29){
-                          //
-                          //   ConfigRouter.pushPage(context, RequestDetailScreen());
-                          // }
                         },
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10),
