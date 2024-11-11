@@ -7,10 +7,12 @@ import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../../../data/models/all_form_detail_model/work_on_site_detail_model.dart';
+import '../../../../../../data/services/main_services/base_service.dart';
 import '../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../utils/constants/app_date_format.dart';
 import '../../../../../../utils/constants/app_font_styles.dart';
 import '../../../../../../utils/global_use.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItemWorkOnSiteDetail extends StatefulWidget {
    final ResultFormWorkOnSiteDetail dataWorkOnSiteDetail;
@@ -21,6 +23,20 @@ class ItemWorkOnSiteDetail extends StatefulWidget {
 }
 
 class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
+
+  Future<void> _launchUniversalLinkIos(String url) async {
+    if (await canLaunch(url)) {
+      final bool nativeAppLaunchSucceeded = await launch(
+        url,
+        forceSafariVC: false,
+        universalLinksOnly: true,
+      );
+      if (!nativeAppLaunchSucceeded) {
+        await launch(url, forceSafariVC: true);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,6 +62,7 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                         spreadRadius: 1)
                   ]),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -164,6 +181,144 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                       Expanded(flex: 5, child: Text(widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].taskDescription, style: TextStyle(fontSize: 13))),
                     ],
                   ),
+
+                  Row(
+                    children: [
+                      Expanded(flex: 4, child: Text("Purpose", style: TextStyle(fontSize: 13))),
+                      Expanded(flex: 1, child: Text(":")),
+                      Expanded(flex: 5, child: Text(widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].purpose, style: TextStyle(fontSize: 13))),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Expanded(flex: 4, child: Text("Location", style: TextStyle(fontSize: 13))),
+                      Expanded(flex: 1, child: Text(":")),
+                      Expanded(flex: 5, child: Text(widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].location, style: TextStyle(fontSize: 13))),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Expanded(flex: 4, child: Text("Transportation By", style: TextStyle(fontSize: 13))),
+                      Expanded(flex: 1, child: Text(":")),
+                      Expanded(flex: 5, child: Text(widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].transportationBy, style: TextStyle(fontSize: 13))),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Expanded(flex: 4, child: Text("Plate Number", style: TextStyle(fontSize: 13))),
+                      Expanded(flex: 1, child: Text(":")),
+                      Expanded(flex: 5, child: Text(widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].workOnsideVehiclPlateNumber, style: TextStyle(fontSize: 13))),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(flex: 4, child: Text("Plate Number", style: TextStyle(fontSize: 13))),
+                      Expanded(flex: 1, child: Text(":")),
+                      Expanded(flex: 5, child: Text("${widget.dataWorkOnSiteDetail.tabledetail.arraytable1[0].ticketId}", style: TextStyle(fontSize: 13))),
+
+                    ],
+                  ),
+
+
+
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                            bottom: 5.px
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "File Attachment".tr,
+                              style: AppTextStyle()
+                                  .titleS(color: AppColors().primaryBlue),
+                            ),
+                          ],
+                        ),
+                      ),
+                     // Box Title
+                      ListView.builder(
+                          itemCount: widget.dataWorkOnSiteDetail!.tabledetail.file.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context ,index){
+                            // print("test=====${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
+                            // return  Text("${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
+
+
+                              InkWell(
+                              onTap: () async {
+                                // "${BaseService().baseUrlHost}${userInformation[0].image}",
+                                // _launchUniversalLinkIos('http://103.101.80.108:8081${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+                                _launchUniversalLinkIos('${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.px),
+                                  color: AppColors().bgListColor,
+                                ),
+                                margin: const EdgeInsets.symmetric(vertical: 7),
+                                height: 45.px,
+                                width: double.infinity,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex:1,
+                                        child: Container(
+                                          height: 70.px,
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.only(left: 10,),
+                                          child:  Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                "${index + 1}.".tr,
+                                                style: AppTextStyle().titleS(),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 10,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width:200,
+                                              child: Text(
+                                                widget.dataWorkOnSiteDetail!.tabledetail.file[index].fileName,overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: AppTextStyle().textS(),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin: const EdgeInsets.only(right: 10),
+                                                height: 30,
+                                                width: 30,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(5.0),
+                                                    color: Colors.greenAccent.withOpacity(0.7)
+                                                ),
+                                                child: const Icon(Icons.file_present_rounded,color: Colors.white,size: 18,)
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                      ), // box  file attachment
+                    ],
+                  ), // box  File attachment
+                  const SizedBox(height: 5),
                 ],
               ),
             ),

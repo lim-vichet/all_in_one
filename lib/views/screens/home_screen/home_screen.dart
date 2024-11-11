@@ -334,7 +334,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text("Categories",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
                             Text("See all",style: AppTextStyle().textS(color: Colors.lightBlueAccent),),
-
                           ],
                         ),
                       ),
