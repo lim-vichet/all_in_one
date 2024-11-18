@@ -12,13 +12,15 @@ class _ItemListUserState extends State<ItemListUser> {
   Widget build(BuildContext context) {
     return Container(
       width: 70,
-      height: 90,
+      height: 100,
+      // color: Colors.yellow,
       child: Column(
         children: [
           Container(
             margin: EdgeInsets.all(10),
             width: 60,
-            height: 90,
+            height: 50,
+            // color: Colors.lightBlue,
 
             // color: Colors.lightBlue,
             // decoration: BoxDecoration(
@@ -34,7 +36,7 @@ class _ItemListUserState extends State<ItemListUser> {
               ),
             ),
           ),
-          Text("Vichet")
+          Text("Vichet", style: TextStyle(color: Colors.white),)
         ],
       ),
     );
