@@ -82,6 +82,8 @@ dependencies:
   date_format: ^2.0.9
   dotted_line: ^3.2.3
   url_launcher: ^6.1.11
+  uni_links2: ^0.6.0+2
+  qr_flutter: ^4.1.0
 
 
 
