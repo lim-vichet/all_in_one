@@ -131,7 +131,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   // SizedBox(height: 10,),
                   Container(
-                    width: 390,
+                    width: 395,
                     height: 120,
                     // color: Colors.yellow,
                     child: ListView.builder(
@@ -143,7 +143,28 @@ class _CartScreenState extends State<CartScreen> {
                       },
 
                     ),
-                  )
+                  ),
+
+                  Container(
+                    width: 395,
+                    height: 900,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.8),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60)
+                      )
+                    ),
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(10),
+                      scrollDirection: Axis.vertical,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return ItemListUser();
+                      },
+
+                    ),
+                  ),
                 ],
               )
           )
