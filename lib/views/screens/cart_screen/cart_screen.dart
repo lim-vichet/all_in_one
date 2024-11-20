@@ -132,7 +132,7 @@ class _CartScreenState extends State<CartScreen> {
                   // SizedBox(height: 10,),
                   Container(
                     width: 390,
-                    height: 100,
+                    height: 120,
                     // color: Colors.yellow,
                     child: ListView.builder(
                       padding: EdgeInsets.all(10),
