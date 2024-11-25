@@ -1,11 +1,14 @@
+import 'package:all_in_one/routes/config_router.dart';
 import 'package:all_in_one/utils/global_use.dart';
 import 'package:all_in_one/views/screens/cart_screen/widgets/item_list_user.dart';
+import 'package:all_in_one/views/screens/cart_screen/widgets/item_list_user_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_text_search.dart';
+import 'chat_personal_screen/chat_personal_screen.dart';
 
 class CartScreen extends StatefulWidget {
   static const String routeName = "/cart_screen";
@@ -47,7 +50,7 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Container(
                     width: 390,
-                    height: 50,
+                    height: 40,
                     // color: Colors.yellow,
                     child: Row(
                       children: [
@@ -129,7 +132,7 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   ),
-                  // SizedBox(height: 10,),
+                  SizedBox(height: 15,),
                   Container(
                     width: 395,
                     height: 120,
@@ -139,28 +142,34 @@ class _CartScreenState extends State<CartScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return ItemListUser();
-                      },
+                        return InkWell(
+                          onTap: (){
+                            ConfigRouter.pushPage(context, ChatPersonalScreen());
+                          },
+                            child: ItemListUser()
+                        );
 
+                      },
                     ),
                   ),
 
+                  SizedBox(height: 15,),
                   Container(
                     width: 395,
                     height: 900,
+                    padding: EdgeInsets.only(top: 10, left: 5, bottom: 300),
                     decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.8),
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(60),
-                        topRight: Radius.circular(60)
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50)
                       )
                     ),
                     child: ListView.builder(
-                      padding: EdgeInsets.all(10),
                       scrollDirection: Axis.vertical,
-                      itemCount: 10,
+                      itemCount: 8,
                       itemBuilder: (context, index) {
-                        return ItemListUser();
+                        return ItemListUserChat();
                       },
 
                     ),
