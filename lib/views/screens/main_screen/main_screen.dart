@@ -20,7 +20,6 @@ import '../../../utils/shared_preferences_service.dart';
 import '../../widgets/bottom_nav_icon.dart';
 import '../../widgets/internet_connection_screen/internet_connection_widget.dart';
 import '../account_screen/account_screen.dart';
-import '../cart_screen/cart_screen.dart';
 import '../home_function/home_function.dart';
 import '../home_package/home_package.dart';
 import '../home_screen/home_screen.dart';

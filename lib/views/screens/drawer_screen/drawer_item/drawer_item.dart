@@ -13,7 +13,7 @@ import '../../../../utils/constants/app_font_styles.dart';
 import '../../../../utils/constants/app_images.dart';
 import '../../../../utils/shared_preferences_service.dart';
 import '../../auth/login_screen/login_screen.dart';
-import '../../cart_screen/cart_screen.dart';
+import '../../chat_screen/cart_screen.dart';
 import '../language/language.dart';
 import '../user_profile/user_profile.dart';
 

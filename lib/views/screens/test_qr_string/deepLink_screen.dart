@@ -64,7 +64,6 @@ class DeepLinkScreen extends StatelessWidget {
                             version: QrVersions.auto,
                             size: 320,
                             gapless: false,
-
                             embeddedImageStyle: QrEmbeddedImageStyle(
                               size: Size(80, 80),
                             ),

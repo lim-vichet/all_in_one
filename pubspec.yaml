@@ -84,6 +84,7 @@ dependencies:
   url_launcher: ^6.1.11
   uni_links2: ^0.6.0+2
   qr_flutter: ^4.1.0
+  flutter_chat_bubble: ^2.0.2
 
 
 
