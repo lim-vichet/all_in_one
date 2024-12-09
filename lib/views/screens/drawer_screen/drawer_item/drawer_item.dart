@@ -245,6 +245,33 @@ class _DrawerItemState extends State<DrawerItem> {
           ),
 
 
+          /// Call Video
+          InkWell(
+            onTap: () {
+              ConfigRouter.pushPage(context, CartScreen());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors().white,
+                border: Border(
+                    bottom: BorderSide(
+                        color: AppColors().grey.withOpacity(.2), width: 1.0)),
+              ),
+              child: ListTile(
+                title: Text(
+                  "Chat".tr,
+                  style: AppTextStyle().primaryText(
+                    fontSize: 17,
+                    color: AppColors().black,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.wechat, color: Colors.lightBlueAccent,
+                ),
+              ),
+            ),
+          ),
+
           SharedPreferencesService.instance!.getUserRole != null?
           /// Logout
           InkWell(
