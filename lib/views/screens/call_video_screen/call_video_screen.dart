@@ -50,6 +50,7 @@ class _CallVideoScreenState extends State<CallVideoScreen> {
                 left: 0,
                 child: Column(
                   children: [
+
                     Container(
                       width: 390,
                       height: 40,
@@ -134,7 +135,9 @@ class _CallVideoScreenState extends State<CallVideoScreen> {
                         ],
                       ),
                     ),
+
                     SizedBox(height: 15,),
+
                     Container(
                       width: 395,
                       height: 120,
@@ -156,6 +159,7 @@ class _CallVideoScreenState extends State<CallVideoScreen> {
                     ),
 
                     SizedBox(height: 15,),
+
                     Container(
                       width: 395,
                       height: 900,
