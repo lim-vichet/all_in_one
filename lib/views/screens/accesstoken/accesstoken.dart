@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getAccessToken() async {
     try {
       final serviceAccountJson = await rootBundle.loadString(
-          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-14fa4ed3d3.json');
+          'assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-f033a00f22.json');
 
       final accountCredentials = ServiceAccountCredentials.fromJson(json.decode(serviceAccountJson),);
       const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];

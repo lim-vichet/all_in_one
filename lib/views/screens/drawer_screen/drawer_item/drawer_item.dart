@@ -13,7 +13,8 @@ import '../../../../utils/constants/app_font_styles.dart';
 import '../../../../utils/constants/app_images.dart';
 import '../../../../utils/shared_preferences_service.dart';
 import '../../auth/login_screen/login_screen.dart';
-import '../../cart_screen/cart_screen.dart';
+import '../../chat_screen/cart_screen.dart';
+import '../../test_list_pagenation/test_list_pagenation.dart';
 import '../language/language.dart';
 import '../user_profile/user_profile.dart';
 
@@ -239,6 +240,62 @@ class _DrawerItemState extends State<DrawerItem> {
                 ),
                 leading: Icon(
                   Icons.wechat, color: Colors.lightBlueAccent,
+                ),
+              ),
+            ),
+          ),
+
+
+          /// Call Video
+          InkWell(
+            onTap: () {
+              ConfigRouter.pushPage(context, CartScreen());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors().white,
+                border: Border(
+                    bottom: BorderSide(
+                        color: AppColors().grey.withOpacity(.2), width: 1.0)),
+              ),
+              child: ListTile(
+                title: Text(
+                  "Call Video".tr,
+                  style: AppTextStyle().primaryText(
+                    fontSize: 17,
+                    color: AppColors().black,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.video_call, color: Colors.lightBlueAccent,
+                ),
+              ),
+            ),
+          ),
+
+
+          /// Test Pagination
+          InkWell(
+            onTap: () {
+              ConfigRouter.pushPage(context, TestListPagenation());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors().white,
+                border: Border(
+                    bottom: BorderSide(
+                        color: AppColors().grey.withOpacity(.2), width: 1.0)),
+              ),
+              child: ListTile(
+                title: Text(
+                  "Test Pagination".tr,
+                  style: AppTextStyle().primaryText(
+                    fontSize: 17,
+                    color: AppColors().black,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.video_call, color: Colors.lightBlueAccent,
                 ),
               ),
             ),

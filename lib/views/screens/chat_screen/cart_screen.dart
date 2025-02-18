@@ -1,7 +1,7 @@
 import 'package:all_in_one/routes/config_router.dart';
 import 'package:all_in_one/utils/global_use.dart';
-import 'package:all_in_one/views/screens/cart_screen/widgets/item_list_user.dart';
-import 'package:all_in_one/views/screens/cart_screen/widgets/item_list_user_chat.dart';
+import 'package:all_in_one/views/screens/chat_screen/widgets/item_list_user.dart';
+import 'package:all_in_one/views/screens/chat_screen/widgets/item_list_user_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -171,7 +171,6 @@ class _CartScreenState extends State<CartScreen> {
                       itemBuilder: (context, index) {
                         return ItemListUserChat();
                       },
-
                     ),
                   ),
                 ],

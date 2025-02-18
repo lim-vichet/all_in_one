@@ -36,4 +36,9 @@ class UrlPath {
   /// POST
 
   static String workOnSideForm = "workOnSideForm";
+
+
+  /// chat
+  static String recipient = "recipient";
+
 }
