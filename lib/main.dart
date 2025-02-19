@@ -976,7 +976,7 @@ void main() async {
     log("ContentContent $idTokenFirebase \n\n\n\n");
   });
   // subscribeT();
-  await ConfigReader.initialize(Environment.UAT);
+  await ConfigReader.initialize(Environment.SIT);
   runApp(const MyApp());
 
 

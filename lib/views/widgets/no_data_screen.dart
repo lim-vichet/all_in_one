@@ -19,11 +19,12 @@ class NoDataScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                      "assets/images/image_png/no_data_screen.png",
-                    width: 100.px,
-                    height: 100.px,
-                  ),
+                  // Image.asset(
+                  //     "assets/svgs/No_Data.svg",
+                  //   width: 100.px,
+                  //   height: 100.px,
+                  // ),
+                  Image(image: NetworkImage("https://cdn-icons-png.flaticon.com/512/7466/7466140.png",), width: 100, height: 100,),
                    Text("No more data...", style: AppTextStyle().textS(
                      color: AppColors().grey
                    )

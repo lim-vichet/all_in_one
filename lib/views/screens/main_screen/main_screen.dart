@@ -286,7 +286,7 @@ class _MainScreenState extends State<MainScreen> {
 
                 child: BottomNavigationBar(
                   currentIndex:
-                      BlocProvider.of<BottomNavCubit>(context).currentIndex,
+                  BlocProvider.of<BottomNavCubit>(context).currentIndex,
                   onTap: (index) {
                     bool isNotLogin =
                         SharedPreferencesService.instance?.token == "" ||
@@ -346,7 +346,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-/// Test Notification
+  /// Test Notification
   Future<bool> sendPushMessage({required String recipientToken, required String title, required String body,}) async {
     final jsonCredentials = await rootBundle.loadString('assets/all-in-one-eee8d-firebase-adminsdk-ybt1s-b88a0ca67c.json');
     final creds = auth.ServiceAccountCredentials.fromJson(jsonCredentials);

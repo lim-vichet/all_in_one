@@ -346,11 +346,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         margin: EdgeInsets.symmetric(horizontal: 18.px,vertical: 18.px),
                         // padding: EdgeInsets.symmetric(vertical: 50.px),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color(0xffF7F7F7),
-                          boxShadow: [
-                            BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                          ]
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
                         ),
                         child: _buildCategoryItem(),
                       ),
@@ -406,18 +406,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ///Shop
                       Container(
-                        height: 330,
+                          height: 330,
 
-                        margin: EdgeInsets.symmetric(horizontal: 18.px,vertical: 18.px),
-                        // padding: EdgeInsets.symmetric(vertical: 50.px),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Color(0xffF7F7F7),
-                            boxShadow: [
-                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                            ]
-                        ),
-                        child: _buildShopItem()
+                          margin: EdgeInsets.symmetric(horizontal: 18.px,vertical: 18.px),
+                          // padding: EdgeInsets.symmetric(vertical: 50.px),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Color(0xffF7F7F7),
+                              boxShadow: [
+                                BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                              ]
+                          ),
+                          child: _buildShopItem()
                       ),
 
                     ],
@@ -649,7 +649,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // color: Colors.green,
       margin: EdgeInsets.only(right: 20),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
           child: Image.network("https://d2vwvwqb5i5vtf.cloudfront.net/homeHero/593ee0a2-0e33-410c-94fa-9616413af5e5.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZLUM7VHYRRYIMZ7H%2F20240905%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240905T091106Z&X-Amz-Expires=432000&X-Amz-Signature=80dff5479ba61278cf41de5e60a1192213a607ab63ad8718b5c525282901cee9&X-Amz-SignedHeaders=host")),
 
     );

@@ -59,72 +59,66 @@ class _ListRequestNewState extends State<ListRequestNew> {
                 return NoDataScreen();
               }
             }
-            return Container(
-              width: double.infinity,
-              height: double.infinity,
-              child: Expanded(
-                child: SmartRefresher(
-                  controller: _paginationController,
-                  onRefresh: () {
-                    // print("tests=============${resultListAttendance.length}");
-                    page = 1;
-                    context.read<ListRequestBloc>().add(EventGetListRequest( page: page, status: 'new', search: ''));
-                    _paginationController.loadComplete();
-                  },
+            return SmartRefresher(
+              controller: _paginationController,
+              onRefresh: () {
+                // print("tests=============${resultListAttendance.length}");
+                page = 1;
+                context.read<ListRequestBloc>().add(EventGetListRequest( page: page, status: 'new', search: ''));
+                _paginationController.loadComplete();
+              },
 
-                  onLoading: () {
-                    // print("test=============${resultListAttendance.length}");
-                    if (resultListRequest.length == totalPage) {
-                      _paginationController.loadNoData();
-                    } else {
-                      page++;
-                      context.read<ListRequestBloc>().add(GetLastDataListRequest( page: page, oldData: resultListRequest, status: 'new', search: ''));
-                      _paginationController.loadComplete();
-                    }
-                  },
-                  physics: const BouncingScrollPhysics(),
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  header: MaterialClassicHeader(
-                    color: AppColors().primaryRed,
-                  ),
-                  child: ListView.builder(
-                    padding: EdgeInsets.all(15),
-                    itemCount: resultListRequest.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: (){
-                          ConfigRouter.pushPage(context, RequestDetailScreen(
-                            id: resultListRequest[index].id
-                          ));
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.only(left: 10),
-                          width: double.infinity,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color(0xffF7F7F7),
-                              boxShadow: [
-                                BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
-                              ]
-                          ),
-
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(lan == 'en' ? resultListRequest[0].formNameEn : resultListRequest[0].formName),
-                              Text("${resultListRequest[0].createDate}"),
-
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-                ),
+              onLoading: () {
+                // print("test=============${resultListAttendance.length}");
+                if (resultListRequest.length == totalPage) {
+                  _paginationController.loadNoData();
+                } else {
+                  page++;
+                  context.read<ListRequestBloc>().add(GetLastDataListRequest( page: page, oldData: resultListRequest, status: 'new', search: ''));
+                  _paginationController.loadComplete();
+                }
+              },
+              physics: const BouncingScrollPhysics(),
+              enablePullDown: true,
+              enablePullUp: true,
+              header: MaterialClassicHeader(
+                color: AppColors().primaryRed,
               ),
+              child: ListView.builder(
+                  padding: EdgeInsets.all(15),
+                  itemCount: resultListRequest.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: (){
+                        ConfigRouter.pushPage(context, RequestDetailScreen(
+                            id: resultListRequest[index].id
+                        ));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        padding: EdgeInsets.only(left: 10),
+                        width: double.infinity,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
+                        ),
+
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(lan == 'en' ? resultListRequest[0].formNameEn : resultListRequest[0].formName),
+                            Text("${resultListRequest[0].createDate}"),
+
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
             );
           },
         ),

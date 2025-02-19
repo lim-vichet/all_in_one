@@ -15,6 +15,7 @@ import '../../../../utils/constants/bottom_snack_bar.dart';
 import '../../../../utils/global_use.dart';
 import '../../../widgets/error_screen.dart';
 import '../../../widgets/file_attachment_widget.dart';
+import '../../../widgets/loading/loading.dart';
 import '../../main_screen/main_screen.dart';
 
 class UploadImages extends StatefulWidget {
@@ -63,7 +64,7 @@ class _UploadImagesState extends State<UploadImages> {
             },
             builder: (context, state) {
               if( state is UploadLoadingState ) {
-                // return const LoadingScreen();
+                return LoadingScreen();
               }
               else if ( state is UploadErrorState ) {
                 return const ErrorScreen();
