@@ -26,7 +26,7 @@ class UploadService extends UploadRepository {
           formData: formData
      );
 
-     // print("hello data3333333333333333333 ============= $response");
+     print("hello data3333333333333333333 ============= $response");
      return Right(UploadModel.fromJson(response));
    } on DioError catch ( e ) {
      log("------------------------------> Error Upload Files: $e");

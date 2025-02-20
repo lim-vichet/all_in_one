@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,6 +41,7 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
 
   @override
   Widget build(BuildContext context) {
+    // log("widget.dataWorkOnSiteDetail!.tabledetail!.file=========${widget.dataWorkOnSiteDetail!.tabledetail!.file[0].filePath}");
     return SizedBox(
       width: double.infinity,
       height: 700,
@@ -247,10 +250,7 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                           padding: EdgeInsets.zero,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context ,index){
-                            // print("test=====${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
-                            // return  Text("${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
-
-
+                            log("widget.dataWorkOnSite!.tabledetail!.file[index].filePathx========${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
                               InkWell(
                               onTap: () async {
                                 // "${BaseService().baseUrlHost}${userInformation[0].image}",

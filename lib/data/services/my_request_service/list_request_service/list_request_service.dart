@@ -20,7 +20,7 @@ class ListRequestService extends ListRequestRepository{
       var response = await BaseAPIService().get(
         // attendancesByDate?date=17-10-2023
         // "${UrlPath.attendanceUser}/$idUser?fromDate=$dateTo&toDate=$dateFrom&page=$page&show=2",
-        "${UrlPath.listMyRequest}?status=$status&show=2&search=$search&page=1",
+        "${UrlPath.listMyRequest}?status=$status&show=all&search=$search&page=1",
       );
       if(response["message"]=="Unauthenticated."){
         return Left(
