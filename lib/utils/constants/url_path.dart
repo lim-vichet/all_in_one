@@ -15,6 +15,9 @@ class UrlPath {
   static String vehicleTypeByVehicleType = "vehicleTypeByVehicleType";
   static String listMyRequest = "eApprove/myRequest";
   static String requestVehicle = "requestVehicle";
+  static String userAssign = "employeeList";
+  static String vehicle = "vehicleTypes";
+  static String ticket = "ticketNumber";
 
 
 

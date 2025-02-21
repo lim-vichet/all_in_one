@@ -10,6 +10,7 @@ import '../../../../utils/constants/app_colors.dart';
 import '../../../../utils/constants/app_font_styles.dart';
 import '../../home_screen/home_screen.dart';
 import '../attendance/attendance.dart';
+import 'form_copy/form_copy.dart';
 
 class ListForm extends StatefulWidget {
   const ListForm({super.key});
@@ -71,6 +72,41 @@ class _ListFormState extends State<ListForm> {
                               flex: 8,
                               child: Text(
                                 "Work-On-Site".tr,
+                                style: AppTextStyle().textL(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 15.px),
+                    InkWell(
+                      onTap: () {
+                        ConfigRouter.pushPage(context, const FormCopy());
+                      },
+                      child: Container(
+                        height: 70.px,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: Icon(
+                                  Icons.schedule,
+                                  color: AppColors().green,
+                                )),
+                            Expanded(
+                              flex: 8,
+                              child: Text(
+                                "Form Copy".tr,
                                 style: AppTextStyle().textL(),
                               ),
                             ),

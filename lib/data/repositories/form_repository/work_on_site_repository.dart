@@ -4,6 +4,11 @@ import 'package:all_in_one/data/models/network_error_model/network_error_model.d
 import 'package:dartz/dartz.dart';
 
 import '../../models/form_model/add_work_on_site_form_model.dart';
+import '../../models/form_model/form_copy/get_list_user_assige_model.dart';
+import '../../models/form_model/form_copy/plate_number_model.dart';
+import '../../models/form_model/form_copy/ticket_model.dart';
+import '../../models/form_model/form_copy/vehicle_model.dart';
+import '../../models/form_model/form_copy/work_on_site_model.dart';
 import '../../models/form_model/list_platnumber_model.dart';
 import '../../models/form_model/list_ticketnumber_model.dart';
 import '../../models/form_model/list_user_model.dart';
@@ -44,4 +49,45 @@ abstract class AddWorkOnSiteFormRepository {
       listResultFile
     }
   );
+}
+
+
+
+
+
+/// New Style
+
+abstract class WorkOnSiteRepo {
+  Future<Either<NetworkErrorModel,WorkOnSiteModel>> postData({
+    required approver,
+    required purposeOnside,
+    required dateFrom,
+    required timeFrom,
+    required dateTo,
+    required timeTo,
+    required taskDescription,
+    required locationOnside,
+    required transportationType,
+    required transportation,
+    required workStatus,
+    required workOnsideVehicleId,
+    required ticketId,
+    listResultFile
+  });
+}
+
+abstract class GetListUserUserRepository {
+  Future<Either<NetworkErrorModel,GetListUserApprovedModel>> getListUser();
+}
+
+abstract class VehicleRepository {
+  Future<Either<NetworkErrorModel,VehicleModel>> getVehicle();
+}
+
+abstract class TicketRepository {
+  Future<Either<NetworkErrorModel,TicketModel>> getTicket();
+}
+
+abstract class PlateNumberRepository {
+  Future<Either<NetworkErrorModel,PlateNumberModel>> getPlateNumber(int id);
 }

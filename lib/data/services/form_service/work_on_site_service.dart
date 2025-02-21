@@ -13,10 +13,17 @@ import 'package:dio/dio.dart';
 
 import '../../../utils/constants/url_path.dart';
 import '../../models/form_model/add_work_on_site_form_model.dart';
+import '../../models/form_model/form_copy/get_list_user_assige_model.dart';
+import '../../models/form_model/form_copy/plate_number_model.dart';
+import '../../models/form_model/form_copy/ticket_model.dart';
+import '../../models/form_model/form_copy/vehicle_model.dart';
+import '../../models/form_model/form_copy/work_on_site_model.dart';
 import '../../models/upload_model/upload_model.dart';
 import '../main_services/base_api_service.dart';
 import '../main_services/error_handler/network_error_handler.dart';
 
+
+/// old Style
 class ListUserService extends ListUserRepository{
   @override
   Future<Either<NetworkErrorModel, ListUserModel>> getListSuer() async {
@@ -113,7 +120,6 @@ class ListPlateNumberService extends ListPlateNumberRepository{
   }
 }
 
-
 class AddWorkOnSiteService extends AddWorkOnSiteFormRepository {
 
   @override
@@ -164,4 +170,130 @@ class AddWorkOnSiteService extends AddWorkOnSiteFormRepository {
     }
   }
 
+}
+
+/// old Style
+
+/// New Style
+
+class WorkOnSiteService extends WorkOnSiteRepo {
+  @override
+  Future<Either<NetworkErrorModel, WorkOnSiteModel>> postData({
+    required approver,
+    required purposeOnside,
+    required dateFrom,
+    required timeFrom,
+    required dateTo,
+    required timeTo,
+    required taskDescription,
+    required locationOnside,
+    required transportationType,
+    required transportation,
+    required workStatus,
+    required workOnsideVehicleId,
+    required ticketId,
+    listResultFile
+  }) async {
+
+    try {
+
+      var formData = FormData.fromMap({
+
+        "approver": approver,
+        "purposeOnside":purposeOnside,
+        "dateFrom":dateFrom,
+        "timeFrom":timeFrom,
+        "dateTo":dateTo,
+        "timeTo":timeTo,
+        "taskDescription":taskDescription,
+        "locationOnside":locationOnside,
+        "transportationType":transportationType,
+        "transportation":transportation,
+        "workStatus":workStatus,
+        "file": UploadModel.listMapFile(listResultFile),
+        "workOnsideVehicleId": workOnsideVehicleId,
+        "ticketId":ticketId,
+
+      });
+
+      log("print-----service-----${formData.fields}");
+      var response = await BaseAPIService().post(
+          UrlPath.workOnSideForm,
+          formData: formData
+      );
+
+      return Right(WorkOnSiteModel.fromJson(response));
+    } on DioError catch(e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(
+          title: err!.title,
+          description: err!.description,
+          statusCode: err!.statusCode
+      ));
+    }
+  }
+
+}
+
+class GetListUserUserService extends GetListUserUserRepository {
+  @override
+  Future<Either<NetworkErrorModel, GetListUserApprovedModel>>
+  getListUser() async {
+    try {
+      var response = await BaseAPIService().get(
+          UrlPath.userAssign
+      );
+      return Right(GetListUserApprovedModel.fromJson(response));
+    } on DioError catch (e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(
+          title: err!.title,
+          description: err!.description,
+          statusCode: err!.statusCode
+      ));
+    }
+  }
+}
+
+class VehicleService extends VehicleRepository {
+  @override
+  Future<Either<NetworkErrorModel, VehicleModel>> getVehicle() async {
+    try {
+      var response = await BaseAPIService().get(UrlPath.vehicle);
+
+      return Right(VehicleModel.fromJson(response));
+    } on DioError catch(e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(title: err!.title, description: err!.description, statusCode: err!.statusCode));
+    }
+
+  }
+
+}
+
+class TicketService extends TicketRepository {
+  @override
+  Future<Either<NetworkErrorModel, TicketModel>> getTicket() async {
+    try {
+      var response = await BaseAPIService().get("${UrlPath.ticket}?page=1&show=50");
+      return Right(TicketModel.fromJson(response));
+    } on DioError catch(e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(title: err!.title, description: err!.description, statusCode: err!.statusCode));
+    }
+  }
+
+}
+
+class PlateNumberService extends PlateNumberRepository {
+  @override
+  Future<Either<NetworkErrorModel, PlateNumberModel>> getPlateNumber(int id) async {
+    try {
+      var response = await BaseAPIService().get("${UrlPath.vehicleTypeByVehicleType}?vehicleTypeId=$id");
+      return Right(PlateNumberModel.fromJson(response));
+    } on DioError catch(e) {
+      var err = await NetworkErrorHandler().exec(e);
+      return Left(NetworkErrorModel(title: err!.title, description: err!.description, statusCode: err!.statusCode));
+    }
+  }
 }

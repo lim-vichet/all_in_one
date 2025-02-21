@@ -500,7 +500,7 @@ class _WorkOnSiteFormState extends State<WorkOnSiteForm> {
                                       vehicleTypeId = "${transportationType![0]}";
                                       print("transportationType===========${vehicleTypeId}");
                                       context.read<WorkOnSiteBloc>().add(
-                                          EventGetListPlateNumber(vehicleTypeId: int.parse(vehicleTypeId)));
+                                          EventGetListPlateNumberss(vehicleTypeId: int.parse(vehicleTypeId)));
                                     },
                                   ),
                                   SizedBox(height: 15.px),
