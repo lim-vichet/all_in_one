@@ -406,6 +406,7 @@ class _FormCopyState extends State<FormCopy> {
                             listResultFile: listResultFile,
                             selectPlateNumber: platNumberName,
                           ));
+                          print("listResultFile2===========${jsonEncode(listResultFile)}");
                         }
                       }
                       else if (state is EmptyListImg) {
@@ -720,7 +721,7 @@ class _FormCopyState extends State<FormCopy> {
                                         padding: EdgeInsets.only(bottom: 15),
                                         child: DropDownTextField(
                                           textEditingController: ticketController,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.normal,
                                           ),
