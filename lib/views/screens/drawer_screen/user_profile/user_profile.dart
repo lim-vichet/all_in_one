@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Widget build(BuildContext context) {
+    log("userInformationData!.profile========${userInformationData!.profile}");
     return Scaffold(
         backgroundColor: AppColors().bgColorApp,
         appBar: AppBar(
@@ -114,26 +116,50 @@ class _UserProfileState extends State<UserProfile> {
                                           ]),
                                       child:  Column(
                                         children: [
-                                          SizedBox(height: 55,),
-                                          Text(
-                                            "${"Name".tr}"
-                                                ":"
-                                                ' ${lan == "en" ? userInformationData!.nameEn : userInformationData!.nameKh}',
-                                            style: AppTextStyle().textM(
-                                              color: AppColors().black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
+                                          SizedBox(height: 30,),
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 70,
+                                                height: 70,
+                                                // color: Colors.pink,
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.blue.withOpacity(0.5),
+                                                  backgroundImage: NetworkImage("${BaseService().baseUrlHost}${userInformationData!.profile}"),
+                                                ),
+                                              ),
+                                              SizedBox(width: 20,),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "${"Name".tr}"
+                                                        ":"
+                                                        ' ${lan == "en" ? userInformationData!.nameEn : userInformationData!.nameKh}',
+                                                    style: AppTextStyle().textM(
+                                                      color: AppColors().black,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                  ),
+                                                  SizedBox(height: 3,),
+                                                  Text('${lan == "en" ? userInformationData!.position : userInformationData!.positionKh}',
+                                                    style: AppTextStyle().textM(
+                                                      color: AppColors().black,
+                                                    ),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                  ),
+                                                ],
+                                              ),
+
+                                            ],
                                           ),
-                                          SizedBox(height: 3,),
-                                          Text(' ${lan == "en" ? userInformationData!.position : userInformationData!.positionKh}',
-                                            style: AppTextStyle().textM(
-                                              color: AppColors().black,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                          ),
+
                                         ],
                                       ),
                                     ),

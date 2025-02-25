@@ -85,6 +85,8 @@ dependencies:
   uni_links2: ^0.6.0+2
   qr_flutter: ^4.1.0
   flutter_chat_bubble: ^2.0.2
+  auto_size_text: ^3.0.0
+  flutter_screenutil: ^5.9.3
 
 
 
