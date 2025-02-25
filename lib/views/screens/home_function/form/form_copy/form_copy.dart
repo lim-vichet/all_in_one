@@ -205,8 +205,8 @@ class _FormCopyState extends State<FormCopy> {
               width: screenWidth,
               height: screenHeight,
               decoration: BoxDecoration(
-                color: AppColors().bgColorApp,
-                // color: AppColors().primaryRed,
+                // color: AppColors().bgColorApp,
+                color: AppColors().primaryRed,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
