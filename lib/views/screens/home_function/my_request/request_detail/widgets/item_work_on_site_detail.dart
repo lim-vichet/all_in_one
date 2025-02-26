@@ -26,16 +26,26 @@ class ItemWorkOnSiteDetail extends StatefulWidget {
 
 class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
 
-  Future<void> _launchUniversalLinkIos(String url) async {
+  // Future<void> _launchUniversalLinkIos(String url) async {
+  //   if (await canLaunch(url)) {
+  //     final bool nativeAppLaunchSucceeded = await launch(
+  //       url,
+  //       forceSafariVC: false,
+  //       universalLinksOnly: true,
+  //     );
+  //     if (!nativeAppLaunchSucceeded) {
+  //       await launch(url, forceSafariVC: true);
+  //     }
+  //   }
+  // }
+
+  void _launchUniversalLink(String s) async {
+    const url = 'http://103.101./80.108:8081'; // Replace with your universal link
+
     if (await canLaunch(url)) {
-      final bool nativeAppLaunchSucceeded = await launch(
-        url,
-        forceSafariVC: false,
-        universalLinksOnly: true,
-      );
-      if (!nativeAppLaunchSucceeded) {
-        await launch(url, forceSafariVC: true);
-      }
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 
@@ -244,18 +254,23 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                         ),
                       ),
                      // Box Title
+                     //  Text("${widget.dataWorkOnSiteDetail!.tabledetail!.file[0].filePath}"),
                       ListView.builder(
                           itemCount: widget.dataWorkOnSiteDetail!.tabledetail.file.length,
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context ,index){
-                            log("widget.dataWorkOnSite!.tabledetail!.file[index].filePathx========${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}");
-                              InkWell(
+                             return InkWell(
+
                               onTap: () async {
+                                log("Test Success==========");
                                 // "${BaseService().baseUrlHost}${userInformation[0].image}",
-                                // _launchUniversalLinkIos('http://103.101.80.108:8081${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
-                                _launchUniversalLinkIos('${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+                                // _launchUniversalLinkIos('http://103.101./80.108:8081${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+                                _launchUniversalLink('${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+                                // _launchUniversalLink('${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
+
+
                               },
                               child: Container(
                                 decoration: BoxDecoration(
