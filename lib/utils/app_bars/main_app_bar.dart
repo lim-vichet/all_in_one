@@ -1,4 +1,5 @@
 
+import 'package:all_in_one/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -17,10 +18,12 @@ Widget mainAppBar({
 }){
   return  Stack(
     children: [
-      SizedBox(
+      Container(
         width: screenWidth,
-        child: Image.asset(
-          "assets/images/image_png/header_app_bar.png"),
+        color: AppColors().primaryBlue,
+        // child: Image.asset(
+        //   "assets/images/image_png/header_app_bar.png"),
+        // child: Image.network("https://static.vecteezy.com/system/resources/thumbnails/053/856/736/small/beautiful-blue-sky-with-a-few-red-flowers-in-the-foreground-the-flowers-are-scattered-throughout-the-scene-with-some-in-the-foreground-and-others-in-the-background-free-photo.jpg"),
       ),
       Positioned(
         top: screenHeight * 0.077,

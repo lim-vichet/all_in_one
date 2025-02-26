@@ -1,4 +1,5 @@
 
+import 'package:all_in_one/views/screens/home_function/test_calculate/test_calculate_screen.dart';
 import 'package:all_in_one/views/screens/home_function/upload_images/upload_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -181,6 +182,41 @@ class _HomeFunctionState extends State<HomeFunction> {
                       ),
                     ),
 
+
+                    SizedBox(height: 15.px),
+                    InkWell (
+                      onTap: () {
+                        ConfigRouter.pushPage(context, const TestCalculateScreen());
+                      },
+                      child: Container(
+                        height: 70.px,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffF7F7F7),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(.2),blurRadius: 5,spreadRadius: 1)
+                            ]
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: Icon(
+                                  Icons.calculate,
+                                  color: AppColors().green,
+                                )),
+                            Expanded(
+                              flex: 8,
+                              child: Text(
+                                "Test Calculate".tr,
+                                style: AppTextStyle().textL(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

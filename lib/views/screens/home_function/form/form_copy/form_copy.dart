@@ -478,7 +478,7 @@ class _FormCopyState extends State<FormCopy> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             top: 20,
                                             bottom: 10
                                         ),
@@ -492,7 +492,7 @@ class _FormCopyState extends State<FormCopy> {
                                         padding: EdgeInsets.only(bottom: 15),
                                         child: DropDownTextField(
                                           textEditingController: approveController,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.normal,
                                           ),
@@ -510,7 +510,7 @@ class _FormCopyState extends State<FormCopy> {
                                             hintStyle: TextStyle(color: Colors.blue),
                                             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: approveByName.isEmpty && checkRequire ? AppColors().primaryRed : Colors.cyan.withOpacity(0.2), width: 1)),
                                             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: approveByName.isEmpty && checkRequire ? AppColors().primaryRed : Colors.cyan.withOpacity(0.2), width: 1)),
-                                            suffixIcon: Icon(Icons.arrow_drop_down),
+                                            suffixIcon: const Icon(Icons.arrow_drop_down),
                                           ),
                                           onChanged: (approveBy) {
                                             setState(() {
@@ -520,7 +520,7 @@ class _FormCopyState extends State<FormCopy> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.only(bottom: 10),
+                                        padding: const EdgeInsets.only(bottom: 10),
                                         child: AppDatePicker(
                                           hint: UrlPath().fromDate,
                                           isError: fieldFromDate,
@@ -529,7 +529,7 @@ class _FormCopyState extends State<FormCopy> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.only(bottom: 10),
+                                        padding: const EdgeInsets.only(bottom: 10),
                                         child: AppTimePickerBS(
                                           hint: UrlPath().fromTime,
                                           controller: fromTimeController,
@@ -537,7 +537,7 @@ class _FormCopyState extends State<FormCopy> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.only(bottom: 10),
+                                        padding: const EdgeInsets.only(bottom: 10),
                                         child: AppDatePicker(
                                           hint: UrlPath().toDate,
                                           isError: fieldToDate,

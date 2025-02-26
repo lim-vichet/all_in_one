@@ -41,8 +41,7 @@ class _TestListPagenationState extends State<TestListPagenation> {
 
     // Simulating data fetching, incrementing by 20 items per page
     List<String> newData = List.generate(
-      _pageSize,
-          (index) => 'Item ${(index + 1) + (_currentPage - 1) * _pageSize}',
+      _pageSize, (index) => 'Item ${(index + 1) + (_currentPage - 1) * _pageSize}',
     );
 
     setState(() {

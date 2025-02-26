@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_images.dart';
+import '../../../utils/global_use.dart';
 import '../../../utils/shared_preferences_service.dart';
 import '../accesstoken/accesstoken.dart';
 import '../auth/login_screen/login_screen.dart';
@@ -59,6 +60,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
     return  Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -67,7 +70,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Stack(
           children: [
             Center(
-
               child: AppImages.logoImage(),
             ),
             Positioned(
