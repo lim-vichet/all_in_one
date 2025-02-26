@@ -1,16 +1,18 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../logic/bloc/login_bloc/login_bloc.dart';
 import '../../../../utils/constants/app_colors.dart';
 import '../../../../utils/constants/app_dialog.dart';
 import '../../../../utils/constants/app_font_styles.dart';
+import '../../../../utils/constants/app_text_field.dart';
 import '../../../../utils/global_use.dart';
-import '../../accesstoken/accesstoken.dart';
-import '../../home_screen/home_screen.dart';
+import '../../../widgets/phone_formater/phone_formater.dart';
+import '../../../widgets/text_field.dart';
 import '../../main_screen/main_screen.dart';
-import 'otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "/login_screen";
@@ -280,6 +282,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         /// Phone
                         Column(
                           children: [
+
+                            /// simple phone not format
                             TextField(
                               cursorColor: AppColors().black,
                               keyboardType: TextInputType.number,
@@ -306,8 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     EdgeInsets.fromLTRB(4.px, 4.px, 10, 4.px),
                                     decoration: BoxDecoration(
                                         color: AppColors().bgDetailIcons,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.px))),
+                                        borderRadius: BorderRadius.all(Radius.circular(20.px))),
                                     child: Icon(
                                       Icons.call,
                                       color: AppColors().white,
@@ -326,11 +329,70 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Radius.circular(15.px),
                                   ),
                                 ),
+
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                            SizedBox(height: 5,),
+
+                           // /// phone format 1
+                           //  AppTextField.appTextField(
+                           //      context,
+                           //      padding: EdgeInsets.only(right: 0),
+                           //      hintText: "Phone Number".tr,
+                           //      isObsecure: false,
+                           //      controller: phoneController,
+                           //      // autofillHints: const [
+                           //      //   AutofillHints.username
+                           //      // ],
+                           //      // isError: email,
+                           //      keyboardType: TextInputType.number,
+                           //      inputFormatters: [
+                           //        FilteringTextInputFormatter.digitsOnly,
+                           //        PhoneNumberFormatter(),
+                           //        LengthLimitingTextInputFormatter(
+                           //            12)
+                           //      ],
+                           //      onChange: (phoneValue) {
+                           //      }),
+                           //  SizedBox(height: 5,),
+                           //
+                           //  /// phone format 2
+                           //  AppTextInput(
+                           //      hint: "Phone Number".tr,
+                           //      // controller: phoneNumberController,
+                           //      // isError: fieldPhoneNumber,
+                           //      keyDisable: true,
+                           //      inputFormatters: [FilteringTextInputFormatter.digitsOnly,
+                           //        PhoneNumberFormatter(),
+                           //        LengthLimitingTextInputFormatter(12)],
+                           //      onChange: (value) {
+                           //        if (value.length < 11 || value.length > 12) {
+                           //          setState(() {
+                           //            // check = true;
+                           //          });
+                           //        } else {
+                           //          setState(() {
+                           //            // check = false;
+                           //          });
+                           //        }
+                           //      },
+                           //
+                           //      priFixIcon: Container(
+                           //          width: 40,
+                           //          height: 40,
+                           //          margin:
+                           //          EdgeInsets.fromLTRB(4.px, 4.px, 10, 4.px),
+                           //          decoration: BoxDecoration(
+                           //              color: AppColors().bgDetailIcons,
+                           //              borderRadius: BorderRadius.all(Radius.circular(20.px))),
+                           //          child: Icon(
+                           //            Icons.call,
+                           //            color: AppColors().white,
+                           //          )),
+                           //    // maxLength: 10,
+                           //  ),
+
+                            SizedBox(height: 10,),
                             Container(
                               alignment: Alignment.centerRight,
                               width: double.infinity,

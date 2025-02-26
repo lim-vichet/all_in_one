@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cross_file/cross_file.dart';
@@ -205,8 +206,8 @@ class _FormCopyState extends State<FormCopy> {
               width: screenWidth,
               height: screenHeight,
               decoration: BoxDecoration(
-                // color: AppColors().bgColorApp,
-                color: AppColors().primaryRed,
+                color: AppColors().bgColorApp,
+                // color: AppColors().primaryRed,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
@@ -406,6 +407,7 @@ class _FormCopyState extends State<FormCopy> {
                             listResultFile: listResultFile,
                             selectPlateNumber: platNumberName,
                           ));
+                          print("listResultFile2===========${jsonEncode(listResultFile)}");
                         }
                       }
                       else if (state is EmptyListImg) {
@@ -720,7 +722,7 @@ class _FormCopyState extends State<FormCopy> {
                                         padding: EdgeInsets.only(bottom: 15),
                                         child: DropDownTextField(
                                           textEditingController: ticketController,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.normal,
                                           ),
@@ -759,7 +761,6 @@ class _FormCopyState extends State<FormCopy> {
                                     ],
                                   ),
                                 )),
-
                             /// button save
                             AppButton(
                               onPressed: () {
