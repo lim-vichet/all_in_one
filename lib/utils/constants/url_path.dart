@@ -43,5 +43,6 @@ class UrlPath {
 
   /// chat
   static String recipient = "recipient";
+  static String employeeList = "employeeList";
 
 }

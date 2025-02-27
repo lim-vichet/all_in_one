@@ -17,8 +17,7 @@ class ListUserChattingService extends ListUserChattingRepository{
     required int page,
     required String search
   }) async {
-    try {
-      var response = await BaseAPIService().get(
+    try {var response = await BaseAPIService().get(
         // attendancesByDate?date=17-10-2023
         // "${UrlPath.attendanceUser}/$idUser?fromDate=$dateTo&toDate=$dateFrom&page=$page&show=2",
         "${UrlPath.recipient}?show=10&search=$search&page=$page",
