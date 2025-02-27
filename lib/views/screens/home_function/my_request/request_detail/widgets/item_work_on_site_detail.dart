@@ -26,29 +26,20 @@ class ItemWorkOnSiteDetail extends StatefulWidget {
 
 class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
 
-  // Future<void> _launchUniversalLinkIos(String url) async {
-  //   if (await canLaunch(url)) {
-  //     final bool nativeAppLaunchSucceeded = await launch(
-  //       url,
-  //       forceSafariVC: false,
-  //       universalLinksOnly: true,
-  //     );
-  //     if (!nativeAppLaunchSucceeded) {
-  //       await launch(url, forceSafariVC: true);
-  //     }
-  //   }
-  // }
-
-  void _launchUniversalLink(String s) async {
-    const url = 'http://103.101./80.108:8081'; // Replace with your universal link
-
+  Future<void> _launchUniversalLinkIos(String url) async {
     if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+      final bool nativeAppLaunchSucceeded = await launch(
+        url,
+        forceSafariVC: false,
+        universalLinksOnly: true,
+      );
+      if (!nativeAppLaunchSucceeded) {
+        await launch(url, forceSafariVC: true);
+      }
     }
   }
 
+  
   @override
   Widget build(BuildContext context) {
     // log("widget.dataWorkOnSiteDetail!.tabledetail!.file=========${widget.dataWorkOnSiteDetail!.tabledetail!.file[0].filePath}");
@@ -254,7 +245,6 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                         ),
                       ),
                      // Box Title
-                     //  Text("${widget.dataWorkOnSiteDetail!.tabledetail!.file[0].filePath}"),
                       ListView.builder(
                           itemCount: widget.dataWorkOnSiteDetail!.tabledetail.file.length,
                           shrinkWrap: true,
@@ -267,9 +257,7 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                                 log("Test Success==========");
                                 // "${BaseService().baseUrlHost}${userInformation[0].image}",
                                 // _launchUniversalLinkIos('http://103.101./80.108:8081${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
-                                _launchUniversalLink('${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
-                                // _launchUniversalLink('${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
-
+                                _launchUniversalLinkIos('${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[index].filePath}');
 
                               },
                               child: Container(
@@ -334,6 +322,13 @@ class _ItemWorkOnSiteDetailState extends State<ItemWorkOnSiteDetail> {
                     ],
                   ), // box  File attachment
                   const SizedBox(height: 5),
+                  
+                  Container(
+                    height: 100,
+                    width: screenWidth,
+                    color: Colors.pink,
+                    child: Image.network("${BaseService().baseUrlHost}${widget.dataWorkOnSiteDetail!.tabledetail!.file[0].filePath}", fit: BoxFit.cover,),
+                  )
                 ],
               ),
             ),
